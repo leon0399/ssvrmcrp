@@ -1,0 +1,78 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://gitlab.com/whoatemybutter/optifinedocs/-/blob/master/schemas/cem_model.schema.json",
+	"title": "Custom Entity Models Model",
+	"description": "CEM model files contain the definition of a whole entity model.",
+	"type": "object",
+	"properties": {
+		"texture": {
+			"$ref": "common.schema.json#/$defs/resource",
+			"description": "Texture used by entity model."
+		},
+		"textureSize": {
+			"type": "array",
+			"minItems": 2,
+			"maxItems": 2,
+			"items": {
+				"type": "integer"
+			},
+			"description": "Texture size in pixels; [width, height]."
+		},
+		"shadowSize": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 1,
+			"description": "Shadow size as a scale, from 0.0 to 1.0."
+		},
+		"models": {
+			"type": "array",
+			"description": "Array of model objects that make up the entity's full model.",
+			"items": {
+				"type": "object",
+				"properties": {
+					"baseId": {
+						"type": "string",
+						"description": "Model parent ID. If specified, all parent properties are inherited and do not need to be explicitly put."
+					},
+					"model": {
+						"type": "string",
+						"$ref": "common.schema.json#/$defs/resource",
+						"description": "Path to a JPM from which to load the part model definition. If this is not specified, the items in a JPM can be specified inline to this object, the parent of \"model\"."
+					},
+					"id": {
+						"type": "string",
+						"description": "Model ID, can be used to reference the model as parent."
+					},
+					"part": {
+						"type": "string",
+						"description": "Entity part to which the part model is attached."
+					},
+					"attach": {
+						"type": "boolean",
+						"description": "How to handle replacing overlapping parts. If true, attach. If false, replace."
+					},
+					"scale": {
+						"type": "number",
+						"minimum": 0,
+						"description": "Render scale. 0.0 is invisible."
+					},
+					"animations": {
+						"$ref": "cem_anim.schema.json#/properties/animations"
+					}
+				},
+				"required": [
+					"part"
+				],
+				"allOf": [
+					{
+						"$ref": "cem_part.schema.json"
+					}
+				]
+			}
+		}
+	},
+	"required": [
+		"models"
+	],
+	"additionalProperties": false
+}

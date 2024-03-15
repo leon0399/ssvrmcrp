@@ -1,0 +1,79 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://gitlab.com/whoatemybutter/optifinedocs/-/blob/master/schemas/random_entities.schema.json",
+	"title": "Random Entities",
+	"description": "Random Entities changes an entity's texture based on its qualities, such as position, NBT rules, the day time, and more..",
+	"type": "object",
+	"patternProperties": {
+		"^textures\\.\\d+$": {
+			"type": "string",
+			"description": "Space-separated string of entity textures to use."
+		},
+		"^skins\\.\\d+$": {
+			"type": "string",
+			"description": "Legacy property of textures.N."
+		},
+		"^weights\\.\\d+$": {
+			"type": "string",
+			"description": "Space-separated string of weights to apply to the random choice."
+		},
+		"^biomes\\.\\d+$": {
+			"type": "string",
+			"description": "Space-separated string of biomes."
+		},
+		"^heights\\.\\d+$": {
+			"type": "string",
+			"description": "Height ranges."
+		},
+		"^name\\.\\d+$": {
+			"type": "string",
+			"description": "Entity name to match."
+		},
+		"^professions\\.\\d+$": {
+			"pattern": "(none|armorer|butcher|cartographer|cleric|farmer|fisherman|fletcher|leatherworker|librarian|mason|nitwit|shepherd|toolsmith|weaponsmith)(:\\d+(-\\d+)?(,\\d+(-\\d+)?)*)",
+			"description": "Space-separated string of villager professions with an optional level specifier."
+		},
+		"^colors\\.\\d+$": {
+			"type": "string",
+			"pattern": "(white|orange|magenta|light_blue|yellow|lime|pink|gray|light_gray|cyan|purple|blue|brown|green|red|black) ?",
+			"description": "Space-separated string of wolf/cat collar colors or sheep/llama/shulker box/bed colors."
+		},
+		"^baby\\.\\d+$": {
+			"type": "boolean",
+			"description": "If entity is a baby."
+		},
+		"^health\\.\\d+$": {
+			"type": "string",
+			"description": "Range of health values; can also be given in percent."
+		},
+		"^moonPhase\\.\\d+$": {
+			"type": "string",
+			"description": "List of moon phases, from 0 to 7."
+		},
+		"^dayTime\\.\\d+$": {
+			"type": "string",
+			"description": "List of day times in ticks, from 0 to 24000."
+		},
+		"^weather\\.\\d+$": {
+			"type": "string",
+			"pattern": "(clear|rain|thunder) ?",
+			"description": "Weather conditions."
+		},
+		"^sizes\\.\\d+$": {
+			"type": "string",
+			"description": "Size of mob, if applicable"
+		},
+		"^nbt\\.([a-zA-Z0-9_\\-.+]+|\".*?\")$": {
+			"type": [
+				"number",
+				"string"
+			],
+			"description": "NBT-based rule."
+		},
+		"^blocks\\.\\d+$": {
+			"$ref": "common.schema.json#/$defs/item_id_list",
+			"description": "What block the entity is standing on, or what block the entity is."
+		}
+	},
+	"additionalProperties": false
+}

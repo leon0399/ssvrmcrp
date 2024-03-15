@@ -1,0 +1,14 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://gitlab.com/whoatemybutter/optifinedocs/-/blob/master/schemas/natural_textures.schema.json",
+	"title": "Natural Textures",
+	"description": "Natural Textures randomly rotate a block's texture based off of its position.",
+	"type": "object",
+	"patternProperties": {
+		"^([0-9a-f_]:)?[0-9a-f_]+$": {
+			"enum": ["4", "2", "F", "4F", "2F", "F4", "F2"],
+			"description": "How to rotate and flip the block's texture."
+		}
+	},
+	"additionalProperties": false
+}

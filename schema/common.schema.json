@@ -1,0 +1,34 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$defs": {
+		"resource": {
+			"type": "string",
+			"pattern": "^([0-9a-z_.]+:)?[0-9a-z_.\/-]+",
+			"description": "A regular expression for validating paths to resources."
+		},
+		"item_id": {
+			"type": "string",
+			"pattern": "^([0-9a-z_.]+:)?[0-9a-z_.]+$",
+			"description": "A regular expression for validating item and block IDs."
+		},
+		"item_id_list": {
+			"type": "string",
+			"pattern": "([0-9a-z_.]+:)?[0-9a-z_.]+ ?",
+			"description": "A regular expression for validating a list of item and block IDs."
+		},
+		"enchantment": {
+			"type": "string",
+			"pattern": "^(minecraft:)?(aqua_affinity|bane_of_arthropods|blast_protection|channeling|curse_of_binding|curse_of_vanishing|depth_strider|efficiency|feather_falling|fire_aspect|fire_protection|flame|fortune|frost_walker|impaling|infinity|knockback|looting|loyalty|luck_of_the_sea|lure|mending|multishot|piercing|power|projectile_protection|protection|punch|quick_charge|respiration|riptide|sharpness|silk_touch|smite|soul_speed|sweeping_edge|swift_sneak|thorns|unbreaking)$",
+			"description": "A regular expression for validating an enchantment."
+		},
+		"enchantment_list": {
+			"type": "string",
+			"pattern": "(minecraft:)?(aqua_affinity|bane_of_arthropods|blast_protection|channeling|curse_of_binding|curse_of_vanishing|depth_strider|efficiency|feather_falling|fire_aspect|fire_protection|flame|fortune|frost_walker|impaling|infinity|knockback|looting|loyalty|luck_of_the_sea|lure|mending|multishot|piercing|power|projectile_protection|protection|punch|quick_charge|respiration|riptide|sharpness|silk_touch|smite|soul_speed|sweeping_edge|swift_sneak|thorns|unbreaking) ?",
+			"description": "A regular expression for validating a list of enchantments."
+		},
+		"blending_method_enum": {
+			"enum": ["replace", "alpha", "overlay", "add", "subtract", "multiply", "dodge", "burn", "screen"],
+			"description": "How two or more textures are blended together when combined."
+		}
+	}
+}

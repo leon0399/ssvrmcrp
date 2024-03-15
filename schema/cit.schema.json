@@ -1,0 +1,183 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://gitlab.com/whoatemybutter/optifinedocs/-/blob/master/schemas/cit.schema.json",
+	"title": "Custom Item Textures",
+	"description": "Custom Item Textures (CIT) can change items to different textures based on their properties, such as enchantments, name, or NBT rules.",
+	"type": "object",
+	"properties": {
+		"type": {
+			"enum": [
+				"item",
+				"enchantment",
+				"armor",
+				"elytra"
+			],
+			"default": "item",
+			"description": "Type of texture replacement."
+		},
+		"items": {
+			"type": "string",
+			"$ref": "common.schema.json#/$defs/item_id_list",
+			"description": "String of a space-separated list of items to apply the CIT to."
+		},
+		"texture": {
+			"type": "string",
+			"$ref": "common.schema.json#/$defs/resource",
+			"description": "Path to replacement texture."
+		},
+		"model": {
+			"type": "string",
+			"$ref": "common.schema.json#/$defs/resource",
+			"description": "Path to replacement model."
+		},
+		"damage": {
+			"type": [
+				"integer",
+				"string"
+			],
+			"minimum": 0,
+			"maximum": 65535,
+			"description": "Damage values. Replacement texture is used only when the item damage is a certain value or range."
+		},
+		"damageMask": {
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 65535,
+			"description": "Binary bitmask applied to the item's damage before checking it against the list of eligible damage values."
+		},
+		"stackSize": {
+			"type": [
+				"integer",
+				"string"
+			],
+			"minimum": 0,
+			"maximum": 65535,
+			"description": "Required amount of item that must be in 1 inventory slot."
+		},
+		"enchantments": {
+			"type": "string",
+			"$ref": "common.schema.json#/$defs/enchantment_list",
+			"description": "List of enchantment names to match."
+		},
+		"enchantmentIDs": {
+			"type": "string",
+			"$ref": "common.schema.json#/$defs/enchantment_list",
+			"description": "List of enchantment names to match. Legacy property.",
+			"deprecated": true
+		},
+		"enchantmentLevels": {
+			"type": "string",
+			"description": "Space-separated list of enchantment levels, from 0 to 255."
+		},
+		"hand": {
+			"enum": [
+				"any",
+				"main",
+				"off"
+			],
+			"default": "any",
+			"description": "Hand in which the item is placed onto (main hand, offhand)."
+		}
+	},
+	"patternProperties": {
+		"^nbt\\.([a-zA-Z0-9_\\-.+]+|\".*?\")$": {
+			"type": [
+				"number",
+				"string"
+			],
+			"description": "NBT-based rule."
+		}
+	},
+	"anyOf": [
+		{
+			"if": {
+				"properties": {
+					"type": {
+						"const": "item"
+					}
+				}
+			},
+			"then": {
+				"patternProperties": {
+					"texture\\.([a-z0-9_.]+)": {
+						"$ref": "common.schema.json#/$defs/resource",
+						"description": "Replacement for alternate textures. For items with more than one texture, this allows specifying replacements for each texture separately."
+					},
+					"model\\.([a-z0-9_.]+)": {
+						"$ref": "common.schema.json#/$defs/resource",
+						"description": "Replacement for alternate models. For items with more than one model, this allows specifying replacements for each model separately."
+					}
+				},
+				"properties": {
+					"weight": {
+						"type": "integer",
+						"minimum": 0,
+						"default": 0,
+						"description": "If multiple properties files match the same item, the highest weighted one is used (biggest weight number)."
+					}
+				}
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"type": {
+						"const": "enchantment"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"blend": {
+						"$ref": "common.schema.json#/$defs/blending_method_enum"
+					},
+					"speed": {
+						"type": "integer",
+						"minimum": 0,
+						"default": 1,
+						"description": "Scrolling speed of texture."
+					},
+					"rotation": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 360,
+						"description": "Angle of texture (in degrees) relative to the item."
+					},
+					"layer": {
+						"type": "integer",
+						"minimum": 0,
+						"description": "Specifies a unique layer and the ordering of the layers as they overlap each other."
+					},
+					"weight": {
+						"type": "integer",
+						"minimum": 0,
+						"description": "Relative priority of the enchantment within a layer."
+					},
+					"duration": {
+						"type": "integer",
+						"minimum": 0,
+						"description": "Duration in seconds of the enchantment glint in a cycle."
+					}
+				}
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"type": {
+						"const": "armor"
+					}
+				}
+			},
+			"then": {
+				"patternProperties": {
+					"texture\\.([a-z0-9_.]+)": {
+						"$ref": "common.schema.json#/$defs/resource",
+						"description": "Replacement for alternate textures. For armors with more than one texture, this allows specifying replacements for each texture separately."
+					}
+				}
+			}
+		}
+	],
+	"additionalProperties": false
+}

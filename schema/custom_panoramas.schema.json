@@ -1,0 +1,58 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://gitlab.com/whoatemybutter/optifinedocs/-/blob/master/schemas/custom_panoramas.schema.json",
+	"title": "Custom Panoramas",
+	"description": "Custom Panoramas control the behaviour of the main menu panorama.",
+	"type": "object",
+	"properties": {
+		"weight": {
+			"type": "integer",
+			"minimum": 0,
+			"default": 1,
+			"description": "Weights of selections, in descending order; higher weights will be selected more often."
+		},
+		"blur1": {
+			"type": "integer",
+			"minimum": 1,
+			"maximum": 64,
+			"default": 1
+		},
+		"blur2": {
+			"type": "integer",
+			"minimum": 1,
+			"maximum": 3,
+			"default": 1
+		},
+		"blur3": {
+			"type": "integer",
+			"minimum": 1,
+			"maximum": 3,
+			"default": 1
+		},
+		"overlay1.top": {
+			"type": "string",
+			"pattern": "^[0-9a-fA-F]{8}$",
+			"default": "80FFFFFF",
+			"description": "First overlay, top gradient color."
+		},
+		"overlay1.bottom": {
+			"type": "string",
+			"pattern": "^[0-9a-fA-F]{8}$",
+			"default": "00FFFFFF",
+			"description": "First overlay, bottom gradient color."
+		},
+		"overlay2.top": {
+			"type": "string",
+			"pattern": "^[0-9a-fA-F]{8}$",
+			"default": "00FFFFFF",
+			"description": "Second overlay, top gradient color."
+		},
+		"overlay2.bottom": {
+			"type": "string",
+			"pattern": "^[0-9a-fA-F]{8}$",
+			"default": "00000000",
+			"description": "Second overlay, bottom gradient color."
+		}
+	},
+	"additionalProperties": false
+}

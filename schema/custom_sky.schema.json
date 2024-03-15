@@ -1,0 +1,80 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://gitlab.com/whoatemybutter/optifinedocs/-/blob/master/schemas/custom_sky.schema.json",
+	"title": "Custom Sky",
+	"description": "Custom Sky changes the skybox texture and can apply different sets of skies depending on the time, biome, heights, weather, and more.",
+	"type": "object",
+	"properties": {
+		"startFadeIn": {
+			"type": "string",
+			"pattern": "^\\d{1,2}:\\d{1,2}$",
+			"description": "Start time to fade in."
+		},
+		"endFadeIn": {
+			"type": "string",
+			"pattern": "^\\d{1,2}:\\d{1,2}$",
+			"description": "End time to fade in."
+		},
+		"endFadeOut": {
+			"type": "string",
+			"pattern": "^\\d{1,2}:\\d{1,2}$",
+			"description": "End time to fade out."
+		},
+		"source": {
+			"$ref": "common.schema.json#/$defs/resource",
+			"description": "Path to source texture."
+		},
+		"blend": {
+			"$ref": "common.schema.json#/$defs/blending_method_enum",
+			"default": "add",
+			"description": "The blending method between fading of layers."
+		},
+		"rotate": {
+			"type": "boolean",
+			"default": true,
+			"description": "Whether or not the source texture should rotate with the time of day."
+		},
+		"speed": {
+			"type": "number",
+			"minimum": 0.0,
+			"default": 1.0,
+			"description": "Rotation speed as a multiple of the default of one 360-degree cycle per game day."
+		},
+		"axis": {
+			"type": "string",
+			"pattern": "^-?\\d+(\\.\\d+)? -?\\d+(\\.\\d+)? -?\\d+(\\.\\d+)?$",
+			"default": "0.0 0.0 1.0",
+			"description": "The axis of rotation of the skybox."
+		},
+		"days": {
+			"type": "string",
+			"description": "The days for which the layer is to be rendered."
+		},
+		"daysLoop": {
+			"type": "integer",
+			"minimum": 0,
+			"default": 8,
+			"description": "Number of days in a loop."
+		},
+		"weather": {
+			"enum": ["clear", "rain", "thunder"],
+			"default": "clear",
+			"description": "Under what weather for which the layer is to be rendered."
+		},
+		"biomes": {
+			"type": "string",
+			"description": "Limit the sky to only certain biomes."
+		},
+		"heights": {
+			"type": "string",
+			"description": "Limit the sky to only certain heights."
+		},
+		"transition": {
+			"type": "integer",
+			"default": 1,
+			"minimum": 0,
+			"description": "Transition time in seconds for the layer brightness."
+		}
+	},
+	"additionalProperties": false
+}

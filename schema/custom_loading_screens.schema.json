@@ -1,0 +1,31 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://gitlab.com/whoatemybutter/optifinedocs/-/blob/master/schemas/custom_loading_screens.schema.json",
+	"title": "Custom Loading Screens",
+	"description": "Custom Loading Screens define the screen when changing worlds, loading a world, starting the game, or reloading datapacks.",
+	"type": "object",
+	"properties": {},
+	"additionalProperties": false,
+	"patternProperties": {
+		"^(dim-?[0-9]+\\.)?scaleMode$": {
+			"enum": [
+				"fixed",
+				"full",
+				"stretch"
+			],
+			"description": "Custom scale mode for the background texture.",
+			"default": "fixed"
+		},
+		"^(dim-?[0-9]+\\.)?scale$": {
+			"type": "integer",
+			"minimum": 0,
+			"description": "Custom scale for the background texture.",
+			"default": 1
+		},
+		"^(dim-?[0-9]+\\.)?center$": {
+			"type": "boolean",
+			"description": "Defines if the background texture should be centered on the screen.",
+			"default": false
+		}
+	}
+}

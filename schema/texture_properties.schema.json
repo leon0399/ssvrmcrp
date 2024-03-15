@@ -1,0 +1,14 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://gitlab.com/whoatemybutter/optifinedocs/-/blob/master/schemas/texture_properties.schema.json",
+	"title": "Texture Properties",
+	"description": "Texture Properties define how a texture is to be interpreted.",
+	"type": "object",
+	"properties": {
+		"format": {
+			"enum": ["lab-pbr", "1.3"],
+			"description": "The texture format used for normal and specular shader textures."
+		}
+	},
+	"additionalProperties": false
+}

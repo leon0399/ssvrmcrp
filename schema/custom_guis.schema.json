@@ -1,0 +1,246 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://gitlab.com/whoatemybutter/optifinedocs/-/blob/master/schemas/custom_guis.schema.json",
+	"title": "Custom GUIs",
+	"description": "Custom GUIs can define a texture for each GUI, and apply them based on different criteria, such as the entity, biome, height, and more.",
+	"type": "object",
+	"properties": {
+		"container": {
+			"enum": [
+				"anvil",
+				"beacon",
+				"brewing_stand",
+				"chest",
+				"crafting",
+				"dispenser",
+				"enchantment",
+				"furnace",
+				"hopper",
+				"horse",
+				"villager",
+				"shulker_box",
+				"creative",
+				"inventory"
+			],
+			"description": "Type of container GUI to apply to."
+		},
+		"texture": {
+			"$ref": "common.schema.json#/$defs/resource",
+			"description": "The replacing texture for the GUI."
+		},
+		"name": {
+			"type": "string",
+			"description": "Custom entity or block entity name."
+		},
+		"biomes": {
+			"type": "string",
+			"description": "Space-separated string of biomes where this replacement applies."
+		},
+		"heights": {
+			"type": [
+				"string",
+				"integer"
+			],
+			"description": "Heights where this replacement applies."
+		}
+	},
+	"patternProperties": {
+		"^texture\\.[/0-9a-z._]+$": {
+			"$ref": "common.schema.json#/$defs/resource",
+			"description": "The replacing texture for the GUI."
+		}
+	},
+	"allOf": [
+		{
+			"if": {
+				"properties": {
+					"container": {
+						"const": "chest"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"large": {
+						"type": "boolean",
+						"description": "Whether to use the replacement GUI on a large chest."
+					},
+					"trapped": {
+						"type": "boolean",
+						"description": "Whether to use the replacement GUI on a trapped chest."
+					},
+					"christmas": {
+						"type": "boolean",
+						"description": "Whether to use the replacement GUI on any Christmas chest."
+					},
+					"ender": {
+						"type": "boolean",
+						"description": "Whether to use the replacement GUI on an Ender Chest."
+					}
+				}
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"container": {
+						"const": "beacon"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"levels": {
+						"type": [
+							"string",
+							"integer"
+						],
+						"minimum": 1,
+						"maximum": 4,
+						"description": "What levels of beacon power to apply the replacement to; how many bases of blocks."
+					}
+				}
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"container": {
+						"const": "villager"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"professions": {
+						"type": "string",
+						"pattern": "(none|armorer|butcher|cartographer|cleric|farmer|fisherman|fletcher|leatherworker|librarian|mason|nitwit|shepherd|toolsmith|weaponsmith)(:\\d+(-\\d+)?(,\\d+(-\\d+)?)*)",
+						"description": "Space-separated string of villager professions with an optional level specifier."
+					}
+				}
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"container": {
+						"const": "horse"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"variants": {
+						"enum": [
+							"horse",
+							"donkey",
+							"mule",
+							"llama"
+						],
+						"description": "What specific horse type to apply replacement to."
+					},
+					"colors": {
+						"enum": [
+							"white",
+							"orange",
+							"magenta",
+							"light_blue",
+							"yellow",
+							"lime",
+							"pink",
+							"gray",
+							"light_gray",
+							"cyan",
+							"purple",
+							"blue",
+							"brown",
+							"green",
+							"red",
+							"black"
+						],
+						"description": "Llama carpet color to apply the replacement texture to."
+					}
+				}
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"container": {
+						"const": "dispenser"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"variants": {
+						"enum": [
+							"dispenser",
+							"dropper"
+						],
+						"default": "dispenser",
+						"description": "What specific block to apply the replacement GUI to."
+					}
+				}
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"container": {
+						"const": "shulker_box"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"colors": {
+						"enum": [
+							"white",
+							"orange",
+							"magenta",
+							"light_blue",
+							"yellow",
+							"lime",
+							"pink",
+							"gray",
+							"light_gray",
+							"cyan",
+							"purple",
+							"blue",
+							"brown",
+							"green",
+							"red",
+							"black"
+						],
+						"description": "Shulker box color to apply the replacement texture to."
+					}
+				}
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"colors": {}
+				}
+			},
+			"then": {
+				"properties": {
+					"variants": {
+						"enum": [
+							"shulker_box",
+							"llama"
+						]
+					}
+				},
+				"required": [
+					"colors"
+				]
+			}
+		}
+	],
+	"required": [
+		"container"
+	],
+	"additionalProperties": false
+}

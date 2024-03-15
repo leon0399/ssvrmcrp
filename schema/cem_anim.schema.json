@@ -1,0 +1,77 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://gitlab.com/whoatemybutter/optifinedocs/-/blob/master/schemas/cem_anim.schema.json",
+	"title": "Custom Entity Models Animation",
+	"description": "CEM Animations change how a custom entity model walks, swims, idles, etc.",
+	"type": "object",
+	"properties": {
+		"animations": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"patternProperties": {
+					"^(this|part|[0-9a-zA-Z_]*((:[0-9a-z-A-Z_])*)?)\\.(t[xyz]|r[xyz]|s[xyz])$": {
+						"$ref": "#/$defs/expression"
+					},
+					"^(this|part|[0-9a-zA-Z_]*((:[0-9a-z-A-Z_])*)?)\\.(render\\.(shadow_size|shadow_opacity|leash_offset_[xyz]|shadow_offset_[xz]))$": {
+						"$ref": "#/$defs/expression"
+					},
+					"^(this|part|[0-9a-zA-Z_]*((:[0-9a-z-A-Z_])*)?)\\.(visible|visible_boxes)$": {
+						"type": "boolean"
+					},
+					"^varb?\\.(.+)$": {
+						"$ref": "#/$defs/expression"
+					}
+				}
+			}
+		}
+	},
+	"$defs": {
+		"expression": {
+			"type": "string",
+			"minLength": 1,
+			"anyOf": [
+				{
+					"pattern": "pi|true|false|time|day_time|day_count"
+				},
+				{
+					"pattern": "(this|part|[0-9a-zA-Z_]*((:[0-9a-z-A-Z_])*)?)\\.(.*?)"
+				},
+				{
+					"pattern": "limb_swing|limb_speed|age|head_yaw|head_pitch|player_pos_[xyz]|player_rot_[xyz]|frame_time|dimension|rule_index"
+				},
+				{
+					"pattern": "(max_)?health|(hurt|death|anger)_time|move_(forward|strafing)|pos_[xyz]|rot_[xy]|swing_progress|id"
+				},
+				{
+					"pattern": "is_(aggressive|alive|burning|child|glowing|hurt|in_(hand|item_frame|ground|gui|lava|water)|invisible|on_(head|shoulder|ground)|ridden|riding|sitting|sneaking|sprinting|tamed|wet)"
+				},
+				{
+					"pattern": "\\+|-|\\*|\/|%|add|subtract|multiply|divide|!|&&|\\|\\||[<>]=?|[!=]="
+				},
+				{
+					"pattern": "(sin|cos|asin|acos|tan|atan|to(rad|deg)|abs|floor|ceil|exp|frac|log|random|round|signum|sqrt)\\((-?\\d+(.\\d+)?)\\)"
+				},
+				{
+					"pattern": "(atan2|pow|fmod)\\((-?\\d+(.\\d+)?), (-?\\d+(.\\d+)?)\\)"
+				},
+				{
+					"pattern": "printb?\\((.*?), ?(-?\\d+(.\\d+)?), ?(.*?)\\)"
+				},
+				{
+					"pattern": "i[fn]\\(((.*?), ?(.*?))+\\)"
+				},
+				{
+					"pattern": "lerp|clamp|between|equals\\((-?\\d+(.\\d+)?), ?(-?\\d+(.\\d+)?), ?(-?\\d+(.\\d+)?)\\)"
+				},
+				{
+					"pattern": "m(in|ax)\\(((-?\\d+(.\\d+)?)(?:,\\s*(-?\\d+(.\\d+)?))?)\\)"
+				},
+				{
+					"pattern": "-?\\d+(.\\d+)?"
+				}
+			]
+		}
+	},
+	"additionalProperties": false
+}

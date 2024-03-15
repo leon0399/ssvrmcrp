@@ -1,0 +1,161 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://gitlab.com/whoatemybutter/optifinedocs/-/blob/master/schemas/cem_part.schema.json",
+	"title": "Custom Entity Models Part",
+	"description": "CEM parts contains definition of one model part for a whole CEM model.",
+	"type": "object",
+	"properties": {
+		"texture": {
+			"type": "string",
+			"description": "Texture used by entity model.",
+			"$ref": "common.schema.json#/$defs/resource"
+		},
+		"textureSize": {
+			"type": "array",
+			"items": {
+				"type": "integer"
+			},
+			"minItems": 2,
+			"maxItems": 2,
+			"description": "Texture size (width, height) in pixels."
+		},
+		"invertAxis": {
+			"type": "string",
+			"maxLength": 3,
+			"pattern": "^([xyz])?((?!\\1)[xyz])?((?!\\1)(?!\\2)[xyz])?((?!\\1)(?!\\2)(?!\\3))?$",
+			"description": "Axes to invert; \"xyz\" inverts the X, Y, and Z axes, \"\" inverts none of them."
+		},
+		"translate": {
+			"type": "array",
+			"minItems": 3,
+			"maxItems": 3,
+			"items": {
+				"type": "integer"
+			},
+			"description": "Translate texture by [0], [1], [2]."
+		},
+		"rotate": {
+			"type": "array",
+			"minItems": 3,
+			"maxItems": 3,
+			"items": {
+				"type": "integer"
+			},
+			"description": "Rotate texture by [0], [1], [2]."
+		},
+		"mirrorTexture": {
+			"type": "string",
+			"minLength": 2,
+			"maxLength": 2,
+			"pattern": "^([uv])?((?!\\1)[uv])?((?!\\1)(?!\\2)[uv])?$"
+		},
+		"boxes": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"textureOffset": {
+						"$ref": "#/$defs/textureOffset"
+					},
+					"coordinates": {
+						"$ref": "#/$defs/coordinates"
+					},
+					"sizeAdd": {
+						"$ref": "#/$defs/sizeAdd"
+					}
+				},
+				"patternProperties": {
+					"^uv(Down|Up|North|South|West|East)$": {
+						"type": "array",
+						"minItems": 4,
+						"maxItems": 4,
+						"items": {
+							"type": "string"
+						},
+						"description": "UV for face."
+					}
+				}
+			},
+			"description": "List of part model boxes."
+		},
+		"sprites": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"textureOffset": {
+						"$ref": "#/$defs/textureOffset"
+					},
+					"coordinates": {
+						"$ref": "#/$defs/coordinates"
+					},
+					"sizeAdd": {
+						"$ref": "#/$defs/sizeAdd"
+					}
+				}
+			}
+		},
+		"submodel": {
+			"type": "object",
+			"$ref": "#",
+			"description": "Submodel; attached to the parent, moving and rotating with it."
+		},
+		"submodels": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"$ref": "#"
+			},
+			"description": "List of submodels; attached to the parent, moving and rotating with it."
+		}
+	},
+	"allOf": [
+		{
+			"anyOf": [
+				{
+					"required": [
+						"textureOffset"
+					]
+				},
+				{
+					"required": [],
+					"patternProperties": {
+						"^(?!(uv(Down|Up|North|South|West|East))$).*$": {}
+					}
+				}
+			]
+		},
+		{
+			"required": [
+				"coordinates"
+			]
+		}
+	],
+	"$defs": {
+		"textureOffset": {
+			"type": "array",
+			"items": {
+				"type": "integer"
+			},
+			"minItems": 2,
+			"maxItems": 2,
+			"description": "Texture offset for the box format."
+		},
+		"coordinates": {
+			"type": "array",
+			"minItems": 6,
+			"maxItems": 6,
+			"items": {
+				"type": "integer"
+			},
+			"description": "Box position and dimensions. x, y, z, width, height, depth."
+		},
+		"sizeAdd": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 65535,
+			"description": "Size increment added to all dimensions; can be used for asymmetric scaling."
+		}
+	},
+	"additionalProperties": false
+}

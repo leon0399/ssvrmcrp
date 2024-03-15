@@ -1,0 +1,72 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://gitlab.com/whoatemybutter/optifinedocs/-/blob/master/schemas/custom_animations.schema.json",
+	"title": "Custom Animations",
+	"description": "Custom Animations allows all textures to be animated, like GUIs and entities.",
+	"type": "object",
+	"properties": {
+		"from": {
+			"$ref": "common.schema.json#/$defs/resource",
+			"description": "Path to source texture of the animation to display."
+		},
+		"to": {
+			"$ref": "common.schema.json#/$defs/resource",
+			"description": "Path to destination texture to replace and animate."
+		},
+		"x": {
+			"type": "integer",
+			"minimum": 0,
+			"description": "X coordinate of the top-left corner of the destination texture to animate to."
+		},
+		"y": {
+			"type": "integer",
+			"minimum": 0,
+			"description": "Y coordinate of the top-left corner of the destination texture to animate to."
+		},
+		"w": {
+			"type": "integer",
+			"minimum": 0,
+			"description": "Width of an individual animation frame."
+		},
+		"h": {
+			"type": "integer",
+			"minimum": 0,
+			"description": "Height of an individual animation frame."
+		},
+		"duration": {
+			"type": "integer",
+			"minimum": 0,
+			"description": "Duration of each individual frame, in ticks."
+		},
+		"interpolate": {
+			"type": "boolean",
+			"description": "Whether to unterpolate between each animated frame."
+		},
+		"skip": {
+			"type": "integer",
+			"minimum": 0,
+			"description": "What frame number to skip/ignore during animation."
+		}
+	},
+	"patternProperties": {
+		"^tile\\.\\d+$": {
+			"type": "integer",
+			"minimum": 0,
+			"description": "What frame number to display at the n-th tick."
+		},
+		"^duration\\.\\d+$": {
+			"type": "integer",
+			"minimum": 0,
+			"description": "Duration in ticks to display the tile for."
+		}
+	},
+	"additionalProperties": false,
+	"required": [
+		"from",
+		"to",
+		"x",
+		"y",
+		"w",
+		"h"
+	]
+}

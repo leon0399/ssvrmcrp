@@ -1,0 +1,31 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://gitlab.com/whoatemybutter/optifinedocs/-/blob/master/schemas/cit_global.schema.json",
+	"title": "Custom Item Textures Global",
+	"description": "Global properties for CIT that apply for all CIT files.",
+	"type": "object",
+	"properties": {
+		"method": {
+			"enum": ["average", "layered", "cycle"],
+			"default": "average",
+			"description": "Specifies how to apply multiple effects on the same item."
+		},
+		"cap": {
+			"type": "integer",
+			"minimum": 0,
+			"description": "Specifies how many layers can render for average and layered methods."
+		},
+		"fade": {
+			"type": "number",
+			"minimum": 0.0,
+			"default": 0.5,
+			"description": "The speed at which one effect will transition into another in a cycle."
+		},
+		"useGlint": {
+			"type": "boolean",
+			"default": true,
+			"description": "Use default \"glint.png\" enchantment texture or not."
+		}
+	},
+	"additionalProperties": false
+}

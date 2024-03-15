@@ -1,0 +1,63 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://gitlab.com/whoatemybutter/optifinedocs/-/blob/master/schemas/colormap.schema.json",
+	"title": "Colormap",
+	"description": "Colormaps modify a texture's tint based off its biome and height.",
+	"type": "object",
+	"properties": {
+		"format": {
+			"enum": ["grid", "vanilla", "fixed"],
+			"default": "vanilla",
+			"description": "The format to use for this colormap."
+		},
+		"blocks": {
+			"$ref": "common.schema.json#/$defs/item_id_list",
+			"description": "List of blocks to apply colormap to."
+		},
+		"source": {
+			"$ref": "common.schema.json#/$defs/resource",
+			"description": "File path to colormap texture."
+		},
+		"color": {
+			"type": "string",
+			"pattern": "^[0-9a-fA-F]{6}$",
+			"description": "Color will be applied to all matching blocks (fixed) or held and dropped blocks (else).",
+			"default": "ffffff"
+		},
+		"yVariance": {
+			"type": "integer",
+			"default": 0,
+			"description": "Add a random number to the Y coordinate before sampling from the colormap. Only for grid."
+		},
+		"yOffset": {
+			"type": "integer",
+			"default": 0,
+			"description": "Subtracts a fixed value from the block's Y coordinate before sampling from the colormap."
+		}
+	},
+	"dependentRequired": {
+		"yVariance": ["grid"]
+	},
+	"allOf": [
+		{
+			"if": {
+				"properties": {
+					"format": {
+						"enum": [
+							"vanilla",
+							"grid"
+						]
+					}
+				}
+			},
+			"then": {
+				"not": {
+					"required": [
+						"source"
+					]
+				}
+			}
+		}
+	],
+	"additionalProperties": false
+}

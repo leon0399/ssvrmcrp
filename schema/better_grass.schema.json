@@ -1,0 +1,105 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://gitlab.com/whoatemybutter/optifinedocs/-/blob/master/schemas/better_grass.schema.json",
+	"title": "Better Grass",
+	"description": "Better Grass shows the side grass texture on grass blocks that are near other grass blocks.",
+	"type": "object",
+	"properties": {
+		"grass": {
+			"type": "boolean",
+			"description": "Enables Better Grass for Grass Blocks.",
+			"default": true
+		},
+		"dirt_path": {
+			"type": "boolean",
+			"description": "Enables Better Grass for grass path blocks.",
+			"default": true
+		},
+		"mycelium": {
+			"type": "boolean",
+			"description": "Enables Better Grass for Mycelium.",
+			"default": true
+		},
+		"podzol": {
+			"type": "boolean",
+			"description": "Enables Better Grass for Podzol.",
+			"default": true
+		},
+		"crimson_nylium": {
+			"type": "boolean",
+			"description": "Enables Better Grass for Crimson Nylium.",
+			"default": true
+		},
+		"warped_nylium": {
+			"type": "boolean",
+			"description": "Enables Better Grass for Warped Nylium.",
+			"default": true
+		},
+		"grass.snow": {
+			"type": "boolean",
+			"description": "Enables Better Grass for Grass Blocks that have a snow layer or snow block on top of them.",
+			"default": true
+		},
+		"mycelium.snow": {
+			"type": "boolean",
+			"description": "Enables Better Grass for Mycelium that has a snow layer or snow block on top of them.",
+			"default": true
+		},
+		"podzol.snow": {
+			"type": "boolean",
+			"description": "Enables Better Grass for Podzol that has a snow layer or snow block on top of them.",
+			"default": true
+		},
+		"grass.multilayer": {
+			"type": "boolean",
+			"description": "Allows a transparent grass texture to be used as an overlay for the grass block's side.",
+			"default": false
+		},
+		"texture.grass": {
+			"default": "block/grass_block_top",
+			"description": "What texture to use for the top of a grass block which has Better Grass applied to it.",
+			"$ref": "common.schema.json#/$defs/resource"
+		},
+		"texture.grass_side": {
+			"default": "block/grass_block_side",
+			"description": "What texture to use for the side of a grass block which has Better Grass applied to it.",
+			"$ref": "common.schema.json#/$defs/resource"
+		},
+		"texture.dirt_path": {
+			"description": "What texture to use for the top of a dirt path block which has Better Grass applied to it.",
+			"default": "block/dirt_path_top",
+			"$ref": "common.schema.json#/$defs/resource"
+		},
+		"texture.dirt_path_side": {
+			"description": "What texture to use for the side of a dirt path block which has Better Grass applied to it.",
+			"default": "block/dirt_path_side",
+			"$ref": "common.schema.json#/$defs/resource"
+		},
+		"texture.mycelium": {
+			"description": "What texture to use for the top of a Mycelium block which has Better Grass applied to it.",
+			"default": "block/mycelium_top",
+			"$ref": "common.schema.json#/$defs/resource"
+		},
+		"texture.podzol": {
+			"default": "block/podzol_top",
+			"description": "What texture to use for the top of a Podzol block which has Better Grass applied to it.",
+			"$ref": "common.schema.json#/$defs/resource"
+		},
+		"texture.crimson_nylium": {
+			"description": "What texture to use for the top of a Crimson Nylium block which has Better Grass applied to it.",
+			"default": "block/crimson_nylium",
+			"$ref": "common.schema.json#/$defs/resource"
+		},
+		"texture.warped_nylium": {
+			"default": "block/warped_nylium",
+			"description": "What texture to use for the top of a Warped Nylium block which has Better Grass applied to it.",
+			"$ref": "common.schema.json#/$defs/resource"
+		},
+		"texture.snow": {
+			"description": "What texture to use for the top of a Snow block which has Better Grass applied to it.",
+			"default": "block/snow",
+			"$ref": "common.schema.json#/$defs/resource"
+		}
+	},
+	"additionalProperties": false
+}

@@ -1,0 +1,20 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://gitlab.com/whoatemybutter/optifinedocs/-/blob/master/schemas/dynamic_lights.schema.json",
+	"title": "Dynamic Lights",
+	"description": "Dynamic Lights allows hand-held and dropped light-emitting items such as torches to illuminate the blocks around them in the world.",
+	"type": "object",
+	"properties": {
+		"entities": {
+			"type": "string",
+			"pattern": "(.*?:\\d{1,2}) ?",
+			"description": "Entity light levels."
+		},
+		"items": {
+			"type": "string",
+			"pattern": "(.*?:\\d{1,2}) ?",
+			"description": "Item light levels."
+		}
+	},
+	"additionalProperties": false
+}

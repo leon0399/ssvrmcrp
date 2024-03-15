@@ -1,0 +1,26 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://gitlab.com/whoatemybutter/optifinedocs/-/blob/master/schemas/block_render_layers.schema.json",
+	"title": "Block Render Layers",
+	"description": "The custom block render layers are defined in ``shaders/block.properties`` included in a shader pack.",
+	"type": "object",
+	"properties": {
+		"layer.solid": {
+			"description": "No alpha, no blending (solid textures).",
+			"$ref": "common.schema.json#/$defs/item_id_list"
+		},
+		"layer.cutout": {
+			"description": "No alpha, no blending (cutout textures).",
+			"$ref": "common.schema.json#/$defs/item_id_list"
+		},
+		"layer.cutout_mipped": {
+			"description": "Alpha, no blending, mipmaps (cutout with mipmaps).",
+			"$ref": "common.schema.json#/$defs/item_id_list"
+		},
+		"layer.translucent": {
+			"description": "Alpha, blending, mipmaps (water, stained glass).",
+			"$ref": "common.schema.json#/$defs/item_id_list"
+		}
+	},
+	"additionalProperties": false
+}
