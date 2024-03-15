@@ -1,1537 +1,1407 @@
 {
-    "credit": "Created by FreshLX for Fresh_Animations",
-    "textureSize": [
-        256,
-        128
-    ],
-    "models": [
-        {
-            "part": "head",
-            "id": "head",
-            "invertAxis": "xy",
-            "translate": [
-                0,
-                -9,
-                9
-            ],
-            "submodels": [
-                {
-                    "id": "Created_by_FreshLX_for_Fresh_Animations",
-                    "invertAxis": "xy",
-                    "translate": [
-                        0,
-                        0,
-                        0
-                    ]
-                }
-            ],
-            "animations": [
-                {
-                    "var.r": "random(id)*pi*4",
-                    "var.b": "var.r+age/if(is_child, 4, 7)",
-                    "var.ls": "limb_swing/1.2 /if(is_child, 2, 1)",
-                    "var.swim": "var.r +age/if(is_child, 1.4, 2)",
-                    "var.run": "clamp(if(!is_riding&&is_sprinting||limb_speed>=if(is_child, 0.8, 0.95), min(20, var.run +0.1 *frame_time*20), max(0, var.run -0.1 *frame_time*20)), 0, if(is_child, 1.2, 1))",
-                    "var.walk": "clamp(1-var.run, 0, 1)",
-                    "var.sleep": " if(head.rz!=0, 1, 0)",
-                    "var.clean": "if(is_sitting||is_riding, (0.5-0.5*cos( clamp((-40 -sin(var.r+(age-(limb_swing/6))/150)*48), 0, 1)*pi )), 0)"
-                },
-                {
-                    "rotation.rx": "torad(90) +if(var.sleep==1, 0, is_sitting||is_riding, torad(-55), 0)",
-                    "body.rx": "if(var.sleep==1, torad(-60),   if( !is_on_ground&&is_in_water, sin(var.swim)/20,    is_sneaking, torad(5),                    (torad(2) +sin(torad( 45)+var.ls)*limb_speed/8)*var.run +((torad(-3) +sin(var.ls*2))/30*limb_speed +sin(torad(-45)+var.b)/100)*var.walk ) )",
-                    "body.rz": "                               if(                                                  is_sneaking,   -sin(var.ls)*limb_speed/2,                                                                      -sin(var.ls  )*limb_speed/6*var.walk )",
-                    "body.tx": "if(var.sleep==1, 1, 0)",
-                    "body.ty": "                         15.7 +if( !is_on_ground&&is_in_water, 1,                   is_sneaking, 1 +cos(var.ls*2)*limb_speed, is_sitting||is_riding, 2, (-0.5 +sin(var.ls)*limb_speed/2)*var.run +(-1*limb_speed +cos(var.ls*2)*limb_speed/if(is_child||limb_speed>=0.7, 1, 2) +sin(var.b)/10)*var.walk ) +if(is_riding, -0.2, 0)",
-                    "body.tz": "                         1    +if( !is_on_ground&&is_in_water, -cos(var.swim*2)/4,                                                                                                                                                is_sitting||is_riding, 1, 0)",
-                    "head2.rx": "if(var.sleep==1,       0,     if( !is_on_ground&&is_in_water, torad(-10) -body.rx, is_sneaking, torad(-5), (-body.rx*1.2)*var.run +(-sin(var.ls*2)*limb_speed/30)*var.walk ) +torad(head_pitch)/1.2*(1-var.clean) -body.rx ) +if(is_sitting||is_riding, -torad(head_pitch)/2*(1-var.sleep), 0) +sin(var.r+age/1.5)/2*var.clean",
-                    "head2.ry": "if(var.sleep==1, head.ry, 0) +clamp(torad(head_yaw)/(1.2 +1.8*var.run), torad(-60), torad(60))*(1-var.clean)*(1-var.sleep)",
-                    "head2.rz": "if(var.sleep==1, head.rz, 0) -body.rz",
-                    "head2.ty": "                        -7 +if(is_child, -1 , 0)                              +if( is_sneaking, 2, is_sitting||is_riding, -7, (1 -sin(var.ls)*limb_speed/2)*var.run +(-cos(var.ls*2)*limb_speed/2 +sin(torad(45)+var.b)/12)*var.walk ) +(sin(torad(45)+var.r+age/1.5)/5 +0.6)*var.clean",
-                    "head2.tz": "if(var.sleep==1, -1, 0) -8 +if(is_child, 1.5, 0)                                                                                                                                                     +if(is_sitting||is_riding,  4, 0) +(sin(          var.r+age/1.5)   +0.3)*var.clean",
-                    "head2.sx": "if(is_child, 1.5, 1)",
-                    "head2.sy": "head2.sx",
-                    "head2.sz": "head2.sx"
-                },
-                {
-                    "front_left_leg.rx": " if(var.sleep==1,  front_left_leg.rx +torad(-10 ), if( !is_on_ground&&is_in_water, torad(10) +sin(torad( 0    )+var.swim)/2  , is_sneaking, torad(-15) +sin(torad( 0 )+var.ls)*limb_speed*1.5,                (sin(torad( 0 -45)+var.ls)*limb_speed/1.3)*var.run +(if(is_sitting||is_riding, torad(-5 ), 0) -sin(var.b)/40 +sin(torad( 0 )+var.ls)*limb_speed/1.2 +sin(torad( 0 )+var.ls)/10)*var.walk ) ) +(torad(-115) +sin(var.r+torad(45)+age/1.5)/10 -sin(var.ls)/10)*var.clean",
-                    "front_right_leg.rx": "if(var.sleep==1, front_right_leg.rx +torad(-110), if( !is_on_ground&&is_in_water, torad(10) +sin(torad(180   )+var.swim)/2  , is_sneaking, torad(-15) +sin(torad(180)+var.ls)*limb_speed*1.5,                (sin(torad( 45-45)+var.ls)*limb_speed/1.3)*var.run +(if(is_sitting||is_riding, torad(-5 ), 0) -sin(var.b)/40 +sin(torad(180)+var.ls)*limb_speed/1.2 +sin(torad(180)+var.ls)/10)*var.walk ) )",
-                    "back_left_leg.rx": "  if(var.sleep==1,   back_left_leg.rx +torad(-60 ), if( !is_on_ground&&is_in_water, torad(10) +sin(torad( 90+45)+var.swim)/1.2, is_sneaking, torad(-5 ) +sin(torad( 90)+var.ls)*limb_speed*2  ,                (sin(torad(170+45)+var.ls)*limb_speed    )*var.run +(if(is_sitting||is_riding, torad(-85),    -sin(var.b)/40 +sin(torad( 90)+var.ls)*limb_speed/1.2 +sin(torad( 90)+var.ls)/6 )*var.walk ) +clamp(-sin(var.ls)*limb_speed, torad(-20), 0) ) )",
-                    "back_right_leg.rx": " if(var.sleep==1,  back_right_leg.rx +torad(-70 ), if( !is_on_ground&&is_in_water, torad(10) +sin(torad(-90+45)+var.swim)/1.2, is_sneaking, torad(-5 ) +sin(torad(-90)+var.ls)*limb_speed*2  ,                (sin(torad(150+45)+var.ls)*limb_speed    )*var.run +(if(is_sitting||is_riding, torad(-85),    -sin(var.b)/40 +sin(torad(-90)+var.ls)*limb_speed/1.2 +sin(torad(-90)+var.ls)/6 )*var.walk ) +clamp( sin(var.ls)*limb_speed, torad(-20), 0) ) )",
-                    "front_left_leg.ry": " if(var.sleep==1,  front_left_leg.ry, torad(-5)*clamp(1-limb_speed*6, 0, 1) )",
-                    "front_right_leg.ry": "if(var.sleep==1, front_right_leg.ry, torad( 5)*clamp(1-limb_speed*6, 0, 1) )",
-                    "back_left_leg.ry": "  if(var.sleep==1,   back_left_leg.ry, torad(-5)*clamp(1-limb_speed*6, 0, 1) +if( is_sitting||is_riding, torad(-5 ), 0 ) )",
-                    "back_right_leg.ry": " if(var.sleep==1,  back_right_leg.ry, torad( 5)*clamp(1-limb_speed*6, 0, 1) +if( is_sitting||is_riding, torad( 5 ), 0 ) )",
-                    "front_left_leg.rz": " if(var.sleep==1, torad(-20), if( !is_on_ground&&is_in_water, torad(-1 ),                       is_sneaking, torad( 2) +clamp( sin(torad( 90)+var.ls)*limb_speed/2, -0.15, 0), is_sitting||is_riding, torad( 1.1), clamp(-sin(torad(-45-45)+var.ls)*limb_speed/6,  0, 0.2 )*var.run +(torad( 4)*limb_speed +clamp( sin(torad( 90)+var.ls)*limb_speed/5, -0.15 , 0))*var.walk ) +torad( 1.5)*clamp(1-limb_speed*6, 0, 1) ) +torad(-15)*var.clean",
-                    "front_right_leg.rz": "if(var.sleep==1, 0         , if( !is_on_ground&&is_in_water, torad( 1 ),                       is_sneaking, torad(-2) +clamp( sin(torad( 90)+var.ls)*limb_speed/2, -0, 0.15), is_sitting||is_riding, torad(-1.1), clamp( sin(torad(-45-45)+var.ls)*limb_speed/6, -0.2 , 0)*var.run +(torad(-4)*limb_speed +clamp( sin(torad( 90)+var.ls)*limb_speed/5, -0, 0.15 ))*var.walk ) +torad(-1.5)*clamp(1-limb_speed*6, 0, 1) )",
-                    "back_left_leg.rz": "  if(var.sleep==1, torad(-20), if( !is_on_ground&&is_in_water, torad(-5 ),                       is_sneaking, torad( 3) +clamp( sin(torad(180)+var.ls)*limb_speed/2, -0.15, 0), is_sitting||is_riding, torad(-10 ), clamp(-sin(torad( 45+45)+var.ls)*limb_speed/3, -0.35, 0)*var.run ) )",
-                    "back_right_leg.rz": " if(var.sleep==1, 0         , if( !is_on_ground&&is_in_water, torad( 5 ),                       is_sneaking, torad(-3) +clamp( sin(torad(180)+var.ls)*limb_speed/2, -0, 0.15), is_sitting||is_riding, torad( 10 ), clamp( sin(torad( 45+45)+var.ls)*limb_speed/3,  0, 0.35)*var.run ) )",
-                    "front_left_leg.tx": " if(var.sleep==1,  2 ,  1.1 +if( !is_on_ground&&is_in_water,  0  ,                              is_sneaking, -0.5 +clamp( sin(torad(-90)+var.ls)*limb_speed*3,  0, 2),                                            clamp( sin(torad(-45-45)+var.ls)*limb_speed/2  , -0.5, 0)*var.run +(-0.5*limb_speed +clamp( sin(torad(-90)+var.ls)*limb_speed*1.5,  0, 2))*var.walk ) +clamp(-0.1+limb_speed, -0.1, 0) ) -1*var.clean",
-                    "front_right_leg.tx": "if(var.sleep==1,  2 , -1.1 +if( !is_on_ground&&is_in_water,  0  ,                              is_sneaking,  0.5 +clamp( sin(torad(-90)+var.ls)*limb_speed*3, -2, 0),                                            clamp(-sin(torad(-45-45)+var.ls)*limb_speed/2  ,  0, 0.5)*var.run +( 0.5*limb_speed +clamp( sin(torad(-90)+var.ls)*limb_speed*1.5, -2, 0))*var.walk ) +clamp( 0.1-limb_speed,  0, 0.1) )",
-                    "back_left_leg.tx": "  if(var.sleep==1, 1.5,  1.1 +if( !is_on_ground&&is_in_water,  0.5,                              is_sneaking, -0.5 +clamp( sin(torad( 0 )+var.ls)*limb_speed*3,  0, 2), is_sitting||is_riding,  1.5,               clamp( sin(torad( 45+45)+var.ls)*limb_speed*1.5,  0, 1.5)*var.run ) )",
-                    "back_right_leg.tx": " if(var.sleep==1,  2 , -1.1 +if( !is_on_ground&&is_in_water, -0.5,                              is_sneaking,  0.5 +clamp( sin(torad( 0 )+var.ls)*limb_speed*3, -2, 0), is_sitting||is_riding, -1.5,               clamp(-sin(torad( 45+45)+var.ls)*limb_speed*1.5, -1.5, 0)*var.run ) )",
-                    "front_left_leg.ty": " if(var.sleep==1, 11.5, 23 +if( !is_on_ground&&is_in_water, 1   +sin(torad( 90+45)+var.swim)*2, is_sneaking, clamp(sin(torad( 90)+var.ls)*limb_speed*2, -1, 0),                                        (clamp(sin(torad( 90-45)+var.ls)*limb_speed*2, -2, 1) -1*limb_speed)*var.run +(clamp(sin(torad( 90)+var.ls)*limb_speed*2, -1.5, clamp(if(is_child, 0, -0.3) +1*limb_speed, 0, 1) ) -clamp(-0.3 +1*limb_speed, 0, 1))*var.walk ) ) -10*var.clean",
-                    "front_right_leg.ty": "if(var.sleep==1,  3  , 23 +if( !is_on_ground&&is_in_water, 1   +sin(torad(-90+45)+var.swim)*2, is_sneaking, clamp(sin(torad(-90)+var.ls)*limb_speed*2, -1, 0),                                        (clamp(sin(torad(135-45)+var.ls)*limb_speed*2, -2, 1) -1*limb_speed)*var.run +(clamp(sin(torad(-90)+var.ls)*limb_speed*2, -1.5, clamp(if(is_child, 0, -0.3) +1*limb_speed, 0, 1) ) -clamp(-0.3 +1*limb_speed, 0, 1))*var.walk ) )",
-                    "back_left_leg.ty": "  if(var.sleep==1,  23 , 23 +if( !is_on_ground&&is_in_water,      sin(torad(180+45)+var.swim)*2, is_sneaking, clamp(sin(torad(180)+var.ls)*limb_speed*2, -1, 0),                                        (clamp(sin(torad(260+45)+var.ls)*limb_speed*2, -2, 1) -1*limb_speed)*var.run +(clamp(sin(torad(180)+var.ls)*limb_speed*2, -1.5, clamp(if(is_child, 0, -0.3) +1*limb_speed, 0, 1) ) -clamp(-0.3 +1*limb_speed, 0, 1))*var.walk ) )",
-                    "back_right_leg.ty": " if(var.sleep==1,  27 , 23 +if( !is_on_ground&&is_in_water,      sin(torad( 0 +45)+var.swim)*2, is_sneaking, clamp(sin(torad( 0 )+var.ls)*limb_speed*2, -1, 0),                                        (clamp(sin(torad(240+45)+var.ls)*limb_speed*2, -2, 1) -1*limb_speed)*var.run +(clamp(sin(torad( 0 )+var.ls)*limb_speed*2, -1.5, clamp(if(is_child, 0, -0.3) +1*limb_speed, 0, 1) ) -clamp(-0.3 +1*limb_speed, 0, 1))*var.walk ) )",
-                    "front_left_leg.tz": " if(var.sleep==1, -10, -4 +if( !is_on_ground&&is_in_water, 2   +sin(torad( 0 +45)+var.swim)*3,  is_sneaking, -2 +sin(torad( 0 )+var.ls)*limb_speed*12,                                                                             (sin(torad( 0 -45)+var.ls)*limb_speed*6)*var.run +(if(is_sitting||is_riding,  1, 0 ) -2*limb_speed +sin(torad( 0 )+var.ls)*limb_speed*6 +sin(torad( 0 )+var.ls) +sin(var.b)/30)  *var.walk ) ) +(-6 +sin(var.r+age/1.5)/2 -sin(var.ls))*var.clean",
-                    "front_right_leg.tz": "if(var.sleep==1, -8 , -4 +if( !is_on_ground&&is_in_water, 2   +sin(torad(180+45)+var.swim)*3,  is_sneaking, -2 +sin(torad(180)+var.ls)*limb_speed*12,                                                                             (sin(torad( 45-45)+var.ls)*limb_speed*6)*var.run +(if(is_sitting||is_riding,  1, 0 ) -2*limb_speed +sin(torad(180)+var.ls)*limb_speed*6 +sin(torad(180)+var.ls) +sin(var.b)/30)  *var.walk ) )",
-                    "back_left_leg.tz": "  if(var.sleep==1, -3 ,  7 +if( !is_on_ground&&is_in_water, 0.5 +sin(torad( 90+45)+var.swim)*3,  is_sneaking, -1 +sin(torad( 90)+var.ls)*limb_speed*12,                                                                             (sin(torad(170+45)+var.ls)*limb_speed*6)*var.run +(if(is_sitting||is_riding, -8,     -1*limb_speed +sin(torad( 90)+var.ls)*limb_speed*6 +sin(torad( 90)+var.ls) +sin(var.b)/30) )*var.walk ) )",
-                    "back_right_leg.tz": " if(var.sleep==1, -1 ,  7 +if( !is_on_ground&&is_in_water, 0.5 +sin(torad(-90+45)+var.swim)*3,  is_sneaking, -1 +sin(torad(-90)+var.ls)*limb_speed*12,                                                                             (sin(torad(150+45)+var.ls)*limb_speed*6)*var.run +(if(is_sitting||is_riding, -8,     -1*limb_speed +sin(torad(-90)+var.ls)*limb_speed*6 +sin(torad(-90)+var.ls) +sin(var.b)/30) )*var.walk ) )"
-                },
-                {
-                    "tail3.rx": "if(var.sleep==1,  tail.rx, if( is_sneaking, 0, is_sitting||is_riding, torad(-80) -sin(torad(-45)+var.b)/100, (torad( 15) +sin(var.ls)*limb_speed/10)*var.run +(if(is_tamed&&health>=10, torad(120) -torad(45)*limb_speed, 0) -sin(          var.ls*2)*limb_speed/4 +cos(var.b)/20 )*var.walk ) -body.rx +torad(45) +torad(20)*limb_speed )",
-                    "tail4.rx": "if(var.sleep==1, tail2.rx, if( is_sneaking, 0, is_sitting||is_riding, torad(-90)                           , (torad(-10) -cos(var.ls)*limb_speed/6 )*var.run +(if(is_tamed&&health>=10, torad(-15) +torad(30)*limb_speed, 0) +sin(torad(45)+var.ls*2)*limb_speed/5 +sin(var.b)/20 )*var.walk ) -body.rx +torad(30) -torad(20)*limb_speed )",
-                    "tail3.ry": "if(                                            is_sitting||is_riding, torad( 20), 0)",
-                    "tail4.ry": "if(                                            is_sitting||is_riding, torad( 20), 0)",
-                    "tail3.rz": "if( is_sneaking, -sin(var.ls)*limb_speed/2 +clamp(-torad(head_yaw)/1.5, torad(-25), torad(25)), is_sitting||is_riding, torad(-105) -sin(torad(-45)+var.b  )/100, (if(is_tamed&&health>=10, sin(          var.ls)*limb_speed/2 +if(var.sleep==1, 0, -sin(var.b/2)/10),  sin(          var.ls)*limb_speed/2 +if(var.sleep==1, 0,  sin(var.b/2)/10) ) +clamp( if(var.sleep==1, torad(-15), -torad(head_yaw)/1.5), torad(-25), torad(25))*clamp(limb_speed*3, 0, 1))*var.walk )",
-                    "tail4.rz": "if( is_sneaking,  cos(var.ls)*limb_speed   +clamp(-torad(head_yaw)    , torad(-25), torad(25)), is_sitting||is_riding, torad(-80 ) +sin(           var.b/3)/4  , (if(is_tamed&&health>=10, sin(torad(45)+var.ls)*limb_speed/3 +if(var.sleep==1, 0, -cos(var.b/2)/6 ), -sin(torad(45)+var.ls)*limb_speed/3 +if(var.sleep==1, 0, -cos(var.b/2)/6 ) ) +clamp( if(var.sleep==1, torad( 15), -torad(head_yaw)    ), torad(-25), torad(25))*clamp(limb_speed*3, 0, 1))*var.walk )",
-                    "tail3.ty": "-7                   +if(is_sitting||is_riding,  7  , 0)",
-                    "tail3.tz": "9/if(is_child, 0, 1) +if(is_sitting||is_riding, -2.5, 0)",
-                    "baby_tail.rx": " tail3.rx",
-                    "baby_tail2.rx": "tail4.rx",
-                    "baby_tail.ry": " tail3.ry",
-                    "baby_tail2.ry": "tail4.ry",
-                    "baby_tail.rz": " tail3.rz",
-                    "baby_tail2.rz": "tail4.rz",
-                    "baby_tail.ty": "tail3.ty",
-                    "baby_tail.tz": "8.5/if(is_child, 1, 0) +if(is_sitting||is_riding, -2.5, 0)"
-                },
-                {
-                    "right_ear.ry": "clamp(-torad(20) +if(is_sneaking, -torad(30), 0 ) +torad(head_yaw)/1.5 +torad(30)*clamp(-8 +sin(var.r+age/87)*25, limb_speed, 1), torad(-30), torad( 45)) +clamp((-47 +sin(torad( 5)+var.r+age/26*2)*48)*clamp(-32 +cos(torad( 5)+(var.r+age/26)/1.5)*40 +cos(torad( 5)+(var.r+age/26)/4)*40, 0, 1), 0, 1)/2",
-                    "left_ear.ry": " clamp( torad(20) +if(is_sneaking,  torad(30), 0 ) +torad(head_yaw)/1.5 -torad(30)*clamp(-8 +sin(var.r+age/87)*25, limb_speed, 1), torad(-45), torad( 30)) -clamp((-47 +sin(torad(95)+var.r+age/26*2)*48)*clamp(-32 +cos(torad(95)+(var.r+age/26)/1.5)*40 +cos(torad(95)+(var.r+age/26)/4)*40, 0, 1), 0, 1)/2",
-                    "right_ear.rz": "-torad(10) +if(is_sneaking,  torad(10), 0) -clamp((-47 +sin(          var.r+age/26*2)*48)*clamp(-32 +cos(          (var.r+age/26)/1.5)*40 +cos(          (var.r+age/26)/4)*40, 0, 1), 0, 1)/2",
-                    "left_ear.rz": "  torad(10) +if(is_sneaking, -torad(10), 0) +clamp((-47 +sin(torad(90)+var.r+age/26*2)*48)*clamp(-32 +cos(torad(90)+(var.r+age/26)/1.5)*40 +cos(torad(90)+(var.r+age/26)/4)*40, 0, 1), 0, 1)/2",
-                    "r_eye_top.ty": "        clamp(head_pitch/120, 0, 0.4) +0.2*var.clean",
-                    "l_eye_top.ty": "        clamp(head_pitch/120, 0, 0.4) +0.2*var.clean",
-                    "ctrl_r_pupil.ty": "0.5 +clamp(head_pitch/120, -0.2, 0.5) -clamp(-24 +sin(var.r+age/100)*40, 0, 1)/10 +0.2*var.clean",
-                    "ctrl_l_pupil.ty": "ctrl_r_pupil.ty",
-                    "ctrl_r_pupil.tx": " 0.5 -head_yaw/120 +clamp(sin(var.r+age/27) +sin(var.r+age/16), -0.1, 0.1)*clamp(-20*2 -cos(var.r+age/125)*30*2, 0, 1)*clamp(59*4 -sin(var.r+age/187)*60*4, 0, 1)",
-                    "ctrl_l_pupil.tx": "ctrl_r_pupil.tx -1",
-                    "right_blink.sy": "clamp((1.5 -abs(sin(var.r+age/14)*12))*clamp(-32 +cos((var.r+age/14)/1.5)*40 +cos((var.r+age/14)/4)*40, 0, 1), var.sleep, 1)",
-                    "left_blink.sy": " right_blink.sy"
-                },
-                {
-                    "right_eye.sz": "if(between(player_pos_x-pos_x, -30, 30)&&between(player_pos_y-pos_y, -30, 30)&&between(player_pos_z-pos_z, -30, 30), 1, 2)",
-                    "left_eye.sz": "right_eye.sz",
-                    "right_eye_white.sx": "2",
-                    "right_eye_white.sy": "clamp(1 -(r_eye_top.ty), 0.5, 3)",
-                    "r_eye_pupil.tx": "clamp(ctrl_r_pupil.tx, -0.5, 0.5)",
-                    "r_eye_pupil.ty": "clamp(ctrl_r_pupil.ty, r_eye_top.ty, 1)",
-                    "r_eye_pupil_up.sy": "clamp(1 -(ctrl_r_pupil.ty-0.5)              , 0.5, clamp(1-r_eye_top.ty, 0.5, 1))",
-                    "r_eye_pupil_do.sy": "clamp(1 +(ctrl_r_pupil.ty-0.5) -r_eye_top.ty, 0.5, 1)",
-                    "r_eye_pupil_in.sx": "clamp(1 -(ctrl_r_pupil.tx-0.5)              , 0.75, 1)",
-                    "r_eye_pupil_ou.sx": "clamp(1 +(ctrl_r_pupil.tx+0.5)              , 1, 1)",
-                    "right_eyelid.sy": "clamp(right_eye_white.sy, 1, 4)",
-                    "right_eyelid.sz": "if(right_eyelid.sy==0||right_blink.sy==0, 0, 1)",
-                    "right_eyelid.tz": "0",
-                    "left_eye_white.sx": "2",
-                    "left_eye_white.sy": "clamp(1 -(l_eye_top.ty), 0.5, 3)",
-                    "l_eye_pupil.tx": "clamp(ctrl_l_pupil.tx, -0.5, 0.5)",
-                    "l_eye_pupil.ty": "clamp(ctrl_l_pupil.ty, l_eye_top.ty, 1)",
-                    "l_eye_pupil_up.sy": "clamp(1 -(ctrl_l_pupil.ty-0.5)              , 0.5, clamp(1-l_eye_top.ty, 0.5, 1))",
-                    "l_eye_pupil_do.sy": "clamp(1 +(ctrl_l_pupil.ty-0.5) -l_eye_top.ty, 0.5, 1)",
-                    "l_eye_pupil_in.sx": "clamp(1 -(ctrl_l_pupil.tx-0.5)              , 1, 1)",
-                    "l_eye_pupil_ou.sx": "clamp(1 +(ctrl_l_pupil.tx+0.5)              , 0.75, 1)",
-                    "left_eyelid.sy": "clamp(left_eye_white.sy, 1, 4)",
-                    "left_eyelid.sz": "if(left_eyelid.sy==0||left_blink.sy==0, 0, 1)",
-                    "left_eyelid.tz": "0"
-                },
-                {
-                    "head_part.rx": "head2.rx",
-                    "head_part.ry": "head2.ry",
-                    "head_part.rz": "head2.rz",
-                    "head_part.tx": "head2.tx",
-                    "head_part.ty": "head2.ty+6",
-                    "head_part.tz": "head2.tz-1",
-                    "head_part.sx": "head2.sx",
-                    "head_part.sy": "head2.sy",
-                    "head_part.sz": "head2.sz",
-                    "tail_part.rx": "tail3.rx",
-                    "tail_part.ry": "tail3.ry",
-                    "tail_part.rz": "tail3.rz",
-                    "tail_part.tx": "tail3.tx",
-                    "tail_part.ty": "tail3.ty+6",
-                    "tail_part.tz": "tail3.tz-1",
-                    "body_part.rx": "rotation.rx-torad(90)"
-                }
-            ]
-        },
-        {
-            "part": "body",
-            "id": "body",
-            "invertAxis": "xy",
-            "translate": [
-                0,
-                -6,
-                -1
-            ],
-            "submodels": [
-                {
-                    "id": "rotation",
-                    "invertAxis": "xy",
-                    "translate": [
-                        0,
-                        6,
-                        1
-                    ],
-                    "rotate": [
-                        90,
-                        0,
-                        0
-                    ],
-                    "boxes": [
-                        {
-                            "coordinates": [
-                                -2,
-                                -8,
-                                -4.1,
-                                4,
-                                16,
-                                6
-                            ],
-                            "uvNorth": [
-                                104,
-                                24,
-                                120,
-                                88
-                            ],
-                            "uvEast": [
-                                80,
-                                24,
-                                104,
-                                88
-                            ],
-                            "uvSouth": [
-                                144,
-                                24,
-                                160,
-                                88
-                            ],
-                            "uvWest": [
-                                120,
-                                24,
-                                144,
-                                88
-                            ],
-                            "uvUp": [
-                                120,
-                                24,
-                                104,
-                                0
-                            ],
-                            "uvDown": [
-                                136,
-                                0,
-                                120,
-                                24
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "id": "head2",
-                    "invertAxis": "xy",
-                    "translate": [
-                        0,
-                        9,
-                        -8
-                    ],
-                    "boxes": [
-                        {
-                            "coordinates": [
-                                -1.5,
-                                -2,
-                                -5,
-                                3,
-                                2,
-                                1
-                            ],
-                            "uvNorth": [
-                                8,
-                                104,
-                                20,
-                                112
-                            ],
-                            "uvEast": [
-                                4,
-                                104,
-                                8,
-                                112
-                            ],
-                            "uvSouth": [
-                                24,
-                                104,
-                                36,
-                                112
-                            ],
-                            "uvWest": [
-                                20,
-                                104,
-                                24,
-                                112
-                            ],
-                            "uvUp": [
-                                20,
-                                104,
-                                8,
-                                100
-                            ],
-                            "uvDown": [
-                                32,
-                                100,
-                                20,
-                                104
-                            ]
-                        },
-                        {
-                            "coordinates": [
-                                -2.5,
-                                -2,
-                                -4,
-                                5,
-                                4,
-                                5
-                            ],
-                            "uvNorth": [
-                                20,
-                                20,
-                                40,
-                                36
-                            ],
-                            "uvEast": [
-                                0,
-                                20,
-                                20,
-                                36
-                            ],
-                            "uvSouth": [
-                                60,
-                                20,
-                                80,
-                                36
-                            ],
-                            "uvWest": [
-                                40,
-                                20,
-                                60,
-                                36
-                            ],
-                            "uvUp": [
-                                40,
-                                20,
-                                20,
-                                0
-                            ],
-                            "uvDown": [
-                                60,
-                                0,
-                                40,
-                                20
-                            ]
-                        }
-                    ],
-                    "submodels": [
-                        {
-                            "id": "right_ear",
-                            "invertAxis": "xy",
-                            "translate": [
-                                1,
-                                2,
-                                -0.5
-                            ],
-                            "boxes": [
-                                {
-                                    "coordinates": [
-                                        0,
-                                        0,
-                                        -0.5,
-                                        1,
-                                        1,
-                                        2
-                                    ],
-                                    "uvNorth": [
-                                        8,
-                                        48,
-                                        12,
-                                        52
-                                    ],
-                                    "uvEast": [
-                                        0,
-                                        48,
-                                        8,
-                                        52
-                                    ],
-                                    "uvSouth": [
-                                        20,
-                                        48,
-                                        24,
-                                        52
-                                    ],
-                                    "uvWest": [
-                                        12,
-                                        48,
-                                        20,
-                                        52
-                                    ],
-                                    "uvUp": [
-                                        12,
-                                        48,
-                                        8,
-                                        40
-                                    ],
-                                    "uvDown": [
-                                        16,
-                                        40,
-                                        12,
-                                        48
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "id": "left_ear",
-                            "invertAxis": "xy",
-                            "translate": [
-                                -1,
-                                2,
-                                -0.5
-                            ],
-                            "boxes": [
-                                {
-                                    "coordinates": [
-                                        -1,
-                                        0,
-                                        -0.5,
-                                        1,
-                                        1,
-                                        2
-                                    ],
-                                    "uvNorth": [
-                                        32,
-                                        48,
-                                        36,
-                                        52
-                                    ],
-                                    "uvEast": [
-                                        24,
-                                        48,
-                                        32,
-                                        52
-                                    ],
-                                    "uvSouth": [
-                                        44,
-                                        48,
-                                        48,
-                                        52
-                                    ],
-                                    "uvWest": [
-                                        36,
-                                        48,
-                                        44,
-                                        52
-                                    ],
-                                    "uvUp": [
-                                        36,
-                                        48,
-                                        32,
-                                        40
-                                    ],
-                                    "uvDown": [
-                                        40,
-                                        40,
-                                        36,
-                                        48
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "id": "right_eye",
-                            "invertAxis": "xy",
-                            "translate": [
-                                1.5,
-                                1,
-                                -4
-                            ],
-                            "submodels": [
-                                {
-                                    "id": "r_eye_top",
-                                    "invertAxis": "xy",
-                                    "translate": [
-                                        0,
-                                        0,
-                                        0.025
-                                    ]
-                                },
-                                {
-                                    "id": "r_eye_pupil",
-                                    "invertAxis": "xy",
-                                    "translate": [
-                                        -0.5,
-                                        -0.5,
-                                        0
-                                    ],
-                                    "submodels": [
-                                        {
-                                            "id": "r_eye_pupil_in",
-                                            "invertAxis": "xy",
-                                            "translate": [
-                                                -0.5,
-                                                0,
-                                                0
-                                            ],
-                                            "submodels": [
-                                                {
-                                                    "id": "r_eye_pupil_ou",
-                                                    "invertAxis": "xy",
-                                                    "translate": [
-                                                        1,
-                                                        0,
-                                                        0
-                                                    ],
-                                                    "submodels": [
-                                                        {
-                                                            "id": "r_eye_pupil_do",
-                                                            "invertAxis": "xy",
-                                                            "translate": [
-                                                                -0.5,
-                                                                -0.5,
-                                                                0
-                                                            ],
-                                                            "submodels": [
-                                                                {
-                                                                    "id": "r_eye_pupil_up",
-                                                                    "invertAxis": "xy",
-                                                                    "translate": [
-                                                                        0,
-                                                                        1,
-                                                                        0
-                                                                    ],
-                                                                    "boxes": [
-                                                                        {
-                                                                            "coordinates": [
-                                                                                -0.5,
-                                                                                -1,
-                                                                                -0.055,
-                                                                                1,
-                                                                                1,
-                                                                                0.05
-                                                                            ],
-                                                                            "uvNorth": [
-                                                                                48,
-                                                                                40,
-                                                                                52,
-                                                                                44
-                                                                            ],
-                                                                            "uvEast": [
-                                                                                48,
-                                                                                40,
-                                                                                49,
-                                                                                44
-                                                                            ],
-                                                                            "uvSouth": [
-                                                                                52,
-                                                                                40,
-                                                                                48,
-                                                                                44
-                                                                            ],
-                                                                            "uvWest": [
-                                                                                51,
-                                                                                40,
-                                                                                52,
-                                                                                44
-                                                                            ],
-                                                                            "uvUp": [
-                                                                                52,
-                                                                                41,
-                                                                                48,
-                                                                                40
-                                                                            ],
-                                                                            "uvDown": [
-                                                                                52,
-                                                                                44,
-                                                                                48,
-                                                                                43
-                                                                            ],
-                                                                            "sizeAdd": 0.005
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "right_eye_white",
-                                    "invertAxis": "xy",
-                                    "translate": [
-                                        1,
-                                        -1,
-                                        0
-                                    ],
-                                    "boxes": [
-                                        {
-                                            "coordinates": [
-                                                -1,
-                                                0,
-                                                -0.03,
-                                                1,
-                                                1,
-                                                0.03
-                                            ],
-                                            "uvNorth": [
-                                                44,
-                                                40,
-                                                48,
-                                                44
-                                            ],
-                                            "uvEast": [
-                                                44,
-                                                40,
-                                                45,
-                                                44
-                                            ],
-                                            "uvSouth": [
-                                                48,
-                                                40,
-                                                44,
-                                                44
-                                            ],
-                                            "uvWest": [
-                                                47,
-                                                40,
-                                                48,
-                                                44
-                                            ],
-                                            "uvUp": [
-                                                48,
-                                                41,
-                                                44,
-                                                40
-                                            ],
-                                            "uvDown": [
-                                                48,
-                                                44,
-                                                44,
-                                                43
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "right_eyelid",
-                                    "invertAxis": "xy",
-                                    "translate": [
-                                        0,
-                                        -1,
-                                        1
-                                    ],
-                                    "submodels": [
-                                        {
-                                            "id": "right_blink",
-                                            "invertAxis": "xy",
-                                            "translate": [
-                                                0,
-                                                1.015,
-                                                0
-                                            ],
-                                            "boxes": [
-                                                {
-                                                    "coordinates": [
-                                                        -1,
-                                                        -1.015,
-                                                        -0.08,
-                                                        2,
-                                                        1,
-                                                        0.075
-                                                    ],
-                                                    "uvNorth": [
-                                                        44,
-                                                        44,
-                                                        52,
-                                                        48
-                                                    ],
-                                                    "uvEast": [
-                                                        44,
-                                                        44,
-                                                        45,
-                                                        48
-                                                    ],
-                                                    "uvSouth": [
-                                                        52,
-                                                        44,
-                                                        44,
-                                                        48
-                                                    ],
-                                                    "uvWest": [
-                                                        51,
-                                                        44,
-                                                        52,
-                                                        48
-                                                    ],
-                                                    "uvUp": [
-                                                        52,
-                                                        44,
-                                                        44,
-                                                        45
-                                                    ],
-                                                    "uvDown": [
-                                                        52,
-                                                        48,
-                                                        44,
-                                                        47
-                                                    ],
-                                                    "sizeAdd": 0.015
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "ctrl_r_pupil",
-                                    "invertAxis": "xy",
-                                    "translate": [
-                                        0,
-                                        0,
-                                        0
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "id": "left_eye",
-                            "invertAxis": "xy",
-                            "translate": [
-                                -1.5,
-                                1,
-                                -4
-                            ],
-                            "submodels": [
-                                {
-                                    "id": "l_eye_top",
-                                    "invertAxis": "xy",
-                                    "translate": [
-                                        0,
-                                        0,
-                                        0.025
-                                    ]
-                                },
-                                {
-                                    "id": "l_eye_pupil",
-                                    "invertAxis": "xy",
-                                    "translate": [
-                                        0.5,
-                                        -0.5,
-                                        0
-                                    ],
-                                    "submodels": [
-                                        {
-                                            "id": "l_eye_pupil_in",
-                                            "invertAxis": "xy",
-                                            "translate": [
-                                                -0.5,
-                                                0,
-                                                0
-                                            ],
-                                            "submodels": [
-                                                {
-                                                    "id": "l_eye_pupil_ou",
-                                                    "invertAxis": "xy",
-                                                    "translate": [
-                                                        1,
-                                                        0,
-                                                        0
-                                                    ],
-                                                    "submodels": [
-                                                        {
-                                                            "id": "l_eye_pupil_do",
-                                                            "invertAxis": "xy",
-                                                            "translate": [
-                                                                -0.5,
-                                                                -0.5,
-                                                                0
-                                                            ],
-                                                            "submodels": [
-                                                                {
-                                                                    "id": "l_eye_pupil_up",
-                                                                    "invertAxis": "xy",
-                                                                    "translate": [
-                                                                        0,
-                                                                        1,
-                                                                        0
-                                                                    ],
-                                                                    "boxes": [
-                                                                        {
-                                                                            "coordinates": [
-                                                                                -0.5,
-                                                                                -1,
-                                                                                -0.055,
-                                                                                1,
-                                                                                1,
-                                                                                0.05
-                                                                            ],
-                                                                            "uvNorth": [
-                                                                                56,
-                                                                                40,
-                                                                                60,
-                                                                                44
-                                                                            ],
-                                                                            "uvEast": [
-                                                                                56,
-                                                                                40,
-                                                                                57,
-                                                                                44
-                                                                            ],
-                                                                            "uvSouth": [
-                                                                                60,
-                                                                                40,
-                                                                                56,
-                                                                                44
-                                                                            ],
-                                                                            "uvWest": [
-                                                                                59,
-                                                                                40,
-                                                                                60,
-                                                                                44
-                                                                            ],
-                                                                            "uvUp": [
-                                                                                60,
-                                                                                41,
-                                                                                56,
-                                                                                40
-                                                                            ],
-                                                                            "uvDown": [
-                                                                                60,
-                                                                                44,
-                                                                                56,
-                                                                                43
-                                                                            ],
-                                                                            "sizeAdd": 0.005
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "left_eye_white",
-                                    "invertAxis": "xy",
-                                    "translate": [
-                                        -1,
-                                        -1,
-                                        0
-                                    ],
-                                    "boxes": [
-                                        {
-                                            "coordinates": [
-                                                0,
-                                                0,
-                                                -0.03,
-                                                1,
-                                                1,
-                                                0.03
-                                            ],
-                                            "uvNorth": [
-                                                60,
-                                                40,
-                                                64,
-                                                44
-                                            ],
-                                            "uvEast": [
-                                                60,
-                                                40,
-                                                61,
-                                                44
-                                            ],
-                                            "uvSouth": [
-                                                64,
-                                                40,
-                                                60,
-                                                44
-                                            ],
-                                            "uvWest": [
-                                                63,
-                                                40,
-                                                64,
-                                                44
-                                            ],
-                                            "uvUp": [
-                                                64,
-                                                41,
-                                                60,
-                                                40
-                                            ],
-                                            "uvDown": [
-                                                64,
-                                                44,
-                                                60,
-                                                43
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "left_eyelid",
-                                    "invertAxis": "xy",
-                                    "translate": [
-                                        0,
-                                        -1,
-                                        1
-                                    ],
-                                    "submodels": [
-                                        {
-                                            "id": "left_blink",
-                                            "invertAxis": "xy",
-                                            "translate": [
-                                                0,
-                                                1.015,
-                                                0
-                                            ],
-                                            "boxes": [
-                                                {
-                                                    "coordinates": [
-                                                        -1,
-                                                        -1.015,
-                                                        -0.08,
-                                                        2,
-                                                        1,
-                                                        0.075
-                                                    ],
-                                                    "uvNorth": [
-                                                        56,
-                                                        44,
-                                                        64,
-                                                        48
-                                                    ],
-                                                    "uvEast": [
-                                                        56,
-                                                        44,
-                                                        57,
-                                                        48
-                                                    ],
-                                                    "uvSouth": [
-                                                        64,
-                                                        44,
-                                                        56,
-                                                        48
-                                                    ],
-                                                    "uvWest": [
-                                                        63,
-                                                        44,
-                                                        64,
-                                                        48
-                                                    ],
-                                                    "uvUp": [
-                                                        64,
-                                                        44,
-                                                        56,
-                                                        45
-                                                    ],
-                                                    "uvDown": [
-                                                        64,
-                                                        48,
-                                                        56,
-                                                        47
-                                                    ],
-                                                    "sizeAdd": 0.015
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "ctrl_l_pupil",
-                                    "invertAxis": "xy",
-                                    "translate": [
-                                        0,
-                                        0,
-                                        0
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "id": "tail3",
-                    "invertAxis": "xy",
-                    "translate": [
-                        0,
-                        9,
-                        9
-                    ],
-                    "rotate": [
-                        -90,
-                        0,
-                        0
-                    ],
-                    "boxes": [
-                        {
-                            "coordinates": [
-                                -0.5,
-                                -7.5,
-                                -0.5,
-                                1,
-                                8,
-                                1
-                            ],
-                            "uvNorth": [
-                                4,
-                                64,
-                                8,
-                                96
-                            ],
-                            "uvEast": [
-                                0,
-                                64,
-                                4,
-                                96
-                            ],
-                            "uvSouth": [
-                                12,
-                                64,
-                                16,
-                                96
-                            ],
-                            "uvWest": [
-                                8,
-                                64,
-                                12,
-                                96
-                            ],
-                            "uvUp": [
-                                8,
-                                64,
-                                4,
-                                60
-                            ],
-                            "uvDown": [
-                                12,
-                                60,
-                                8,
-                                64
-                            ],
-                            "sizeAdd": 0.01
-                        }
-                    ],
-                    "submodels": [
-                        {
-                            "id": "tail4",
-                            "invertAxis": "xy",
-                            "translate": [
-                                0,
-                                -7,
-                                0
-                            ],
-                            "boxes": [
-                                {
-                                    "coordinates": [
-                                        -0.5,
-                                        -8,
-                                        -0.5,
-                                        1,
-                                        8,
-                                        1
-                                    ],
-                                    "uvNorth": [
-                                        20,
-                                        64,
-                                        24,
-                                        96
-                                    ],
-                                    "uvEast": [
-                                        16,
-                                        64,
-                                        20,
-                                        96
-                                    ],
-                                    "uvSouth": [
-                                        28,
-                                        64,
-                                        32,
-                                        96
-                                    ],
-                                    "uvWest": [
-                                        24,
-                                        64,
-                                        28,
-                                        96
-                                    ],
-                                    "uvUp": [
-                                        24,
-                                        64,
-                                        20,
-                                        60
-                                    ],
-                                    "uvDown": [
-                                        28,
-                                        60,
-                                        24,
-                                        64
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "id": "baby_tail",
-                    "invertAxis": "xy",
-                    "translate": [
-                        0,
-                        9,
-                        8.5
-                    ],
-                    "rotate": [
-                        -90,
-                        0,
-                        0
-                    ],
-                    "boxes": [
-                        {
-                            "coordinates": [
-                                -0.755,
-                                -8.755,
-                                -0.755,
-                                1.51,
-                                9.01,
-                                1.51
-                            ],
-                            "uvNorth": [
-                                4,
-                                64,
-                                8,
-                                88
-                            ],
-                            "uvEast": [
-                                0,
-                                64,
-                                4,
-                                88
-                            ],
-                            "uvSouth": [
-                                12,
-                                64,
-                                16,
-                                88
-                            ],
-                            "uvWest": [
-                                8,
-                                64,
-                                12,
-                                88
-                            ],
-                            "uvUp": [
-                                8,
-                                64,
-                                4,
-                                60
-                            ],
-                            "uvDown": [
-                                12,
-                                60,
-                                8,
-                                64
-                            ],
-                            "sizeAdd": 0.01
-                        }
-                    ],
-                    "submodels": [
-                        {
-                            "id": "baby_tail2",
-                            "invertAxis": "xy",
-                            "translate": [
-                                0,
-                                -8.5,
-                                0
-                            ],
-                            "boxes": [
-                                {
-                                    "coordinates": [
-                                        -0.75,
-                                        -7.75,
-                                        -0.75,
-                                        1.5,
-                                        8,
-                                        1.5
-                                    ],
-                                    "uvNorth": [
-                                        20,
-                                        76,
-                                        24,
-                                        96
-                                    ],
-                                    "uvEast": [
-                                        16,
-                                        76,
-                                        20,
-                                        96
-                                    ],
-                                    "uvSouth": [
-                                        28,
-                                        76,
-                                        32,
-                                        96
-                                    ],
-                                    "uvWest": [
-                                        24,
-                                        76,
-                                        28,
-                                        96
-                                    ],
-                                    "uvUp": [
-                                        24,
-                                        64,
-                                        20,
-                                        60
-                                    ],
-                                    "uvDown": [
-                                        28,
-                                        60,
-                                        24,
-                                        64
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "part": "front_left_leg",
-            "id": "front_left_leg",
-            "invertAxis": "xy",
-            "translate": [
-                1.1,
-                -1,
-                4
-            ],
-            "boxes": [
-                {
-                    "coordinates": [
-                        -2.1,
-                        0,
-                        -5,
-                        2,
-                        10,
-                        2
-                    ],
-                    "uvNorth": [
-                        168,
-                        8,
-                        176,
-                        48
-                    ],
-                    "uvEast": [
-                        160,
-                        8,
-                        168,
-                        48
-                    ],
-                    "uvSouth": [
-                        184,
-                        8,
-                        192,
-                        48
-                    ],
-                    "uvWest": [
-                        176,
-                        8,
-                        184,
-                        48
-                    ],
-                    "uvUp": [
-                        176,
-                        8,
-                        168,
-                        0
-                    ],
-                    "uvDown": [
-                        184,
-                        0,
-                        176,
-                        8
-                    ]
-                }
-            ]
-        },
-        {
-            "part": "front_right_leg",
-            "id": "front_right_leg",
-            "invertAxis": "xy",
-            "translate": [
-                -1.1,
-                -1,
-                4
-            ],
-            "submodels": [
-                {
-                    "id": "front_right_leg_sub_0",
-                    "invertAxis": "xy",
-                    "translate": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "boxes": [
-                        {
-                            "coordinates": [
-                                0.1,
-                                0,
-                                -5,
-                                2,
-                                10,
-                                2
-                            ],
-                            "uvNorth": [
-                                176,
-                                8,
-                                168,
-                                48
-                            ],
-                            "uvEast": [
-                                184,
-                                8,
-                                176,
-                                48
-                            ],
-                            "uvSouth": [
-                                192,
-                                8,
-                                184,
-                                48
-                            ],
-                            "uvWest": [
-                                168,
-                                8,
-                                160,
-                                48
-                            ],
-                            "uvUp": [
-                                168,
-                                8,
-                                176,
-                                0
-                            ],
-                            "uvDown": [
-                                176,
-                                0,
-                                184,
-                                8
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "part": "back_left_leg",
-            "id": "back_left_leg",
-            "invertAxis": "xy",
-            "translate": [
-                1.1,
-                -1,
-                -7
-            ],
-            "boxes": [
-                {
-                    "coordinates": [
-                        -2.1,
-                        0,
-                        6,
-                        2,
-                        6,
-                        2
-                    ],
-                    "uvNorth": [
-                        48,
-                        60,
-                        40,
-                        84
-                    ],
-                    "uvEast": [
-                        56,
-                        60,
-                        48,
-                        84
-                    ],
-                    "uvSouth": [
-                        64,
-                        60,
-                        56,
-                        84
-                    ],
-                    "uvWest": [
-                        40,
-                        60,
-                        32,
-                        84
-                    ],
-                    "uvUp": [
-                        40,
-                        60,
-                        48,
-                        52
-                    ],
-                    "uvDown": [
-                        48,
-                        52,
-                        56,
-                        60
-                    ]
-                }
-            ]
-        },
-        {
-            "part": "back_right_leg",
-            "id": "back_right_leg",
-            "invertAxis": "xy",
-            "translate": [
-                -1.1,
-                -1,
-                -7
-            ],
-            "submodels": [
-                {
-                    "id": "back_right_leg_sub_0",
-                    "invertAxis": "xy",
-                    "translate": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "boxes": [
-                        {
-                            "coordinates": [
-                                0.1,
-                                0,
-                                6,
-                                2,
-                                6,
-                                2
-                            ],
-                            "uvNorth": [
-                                40,
-                                60,
-                                48,
-                                84
-                            ],
-                            "uvEast": [
-                                32,
-                                60,
-                                40,
-                                84
-                            ],
-                            "uvSouth": [
-                                56,
-                                60,
-                                64,
-                                84
-                            ],
-                            "uvWest": [
-                                48,
-                                60,
-                                56,
-                                84
-                            ],
-                            "uvUp": [
-                                48,
-                                60,
-                                40,
-                                52
-                            ],
-                            "uvDown": [
-                                56,
-                                52,
-                                48,
-                                60
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "part": "tail"
-        },
-        {
-            "part": "tail2"
-        },
-        {
-            "part": "body",
-            "id": "head_part",
-            "model": "cat_head.jpm",
-            "attach": "true"
-        },
-        {
-            "part": "body",
-            "id": "body_part",
-            "model": "cat_body.jpm",
-            "attach": "true"
-        },
-        {
-            "part": "back_left_leg",
-            "id": "back_left_leg_part",
-            "model": "cat_leg_lb.jpm",
-            "attach": "true"
-        },
-        {
-            "part": "back_right_leg",
-            "id": "back_right_leg_part",
-            "model": "cat_leg_rb.jpm",
-            "attach": "true"
-        },
-        {
-            "part": "front_left_leg",
-            "id": "front_left_leg_part",
-            "model": "cat_leg_lf.jpm",
-            "attach": "true"
-        },
-        {
-            "part": "front_right_leg",
-            "id": "front_right_leg_part",
-            "model": "cat_leg_rf.jpm",
-            "attach": "true"
-        },
-        {
-            "part": "back_left_leg",
-            "id": "back_left_leg_part",
-            "model": "cat_legs.jpm",
-            "attach": "true"
-        },
-        {
-            "part": "back_right_leg",
-            "id": "back_right_leg_part",
-            "model": "cat_legs.jpm",
-            "attach": "true"
-        },
-        {
-            "part": "front_left_leg",
-            "id": "front_left_leg_part",
-            "model": "cat_legs.jpm",
-            "attach": "true"
-        },
-        {
-            "part": "front_right_leg",
-            "id": "front_right_leg_part",
-            "model": "cat_legs.jpm",
-            "attach": "true"
-        },
-        {
-            "part": "body",
-            "id": "tail_part",
-            "model": "cat_tail.jpm",
-            "attach": "true"
-        }
-    ]
+	"credit": "Made by Mrblueyeti using Blockbench.\nThe only official virus free download of Better Cats:\nhttps://www.curseforge.com/minecraft/texture-packs/better-cats-minecraft",
+	"textureSize": [2000, 32],
+	"models": [
+		{
+			"part": "head",
+			"id": "head",
+			"invertAxis": "xy",
+			"translate": [0, -10, 7]
+		},
+		{
+			"part": "body",
+			"id": "body",
+			"invertAxis": "xy",
+			"translate": [0, -12, 11],
+			"rotate": [-90, 0, 0],
+			"submodels": [
+				{
+					"id": "body_default",
+					"invertAxis": "xy",
+					"translate": [0, 12, -11],
+					"submodels": [
+						{
+							"id": "domestic_full",
+							"invertAxis": "xy",
+							"translate": [0, 0, 0],
+							"submodels": [
+								{
+									"id": "domestic_nolegs",
+									"invertAxis": "xy",
+									"translate": [0, -12, -3],
+									"submodels": [
+										{
+											"id": "domestic_body_mane",
+											"invertAxis": "xy",
+											"translate": [0, 0, 0],
+											"submodels": [
+												{
+													"id": "default_mane",
+													"invertAxis": "xy",
+													"translate": [0, 1.75, -1.5],
+													"submodels": [
+														{
+															"id": "tabby_mane",
+															"invertAxis": "xy",
+															"translate": [0, -1.75, 15.5],
+															"boxes": [
+																{"coordinates": [-3, -3.75, -18.5, 6, 11, 6], "textureOffset": [0, 0]},
+																{"coordinates": [-3.5, 0.25, -20.4, 7, 7, 8], "textureOffset": [112, 0], "sizeAdd": 0.2}
+															],
+															"submodels": [
+																{
+																	"id": "persian_hair",
+																	"invertAxis": "xy",
+																	"translate": [0, 6.75, -21.4],
+																	"submodels": [
+																		{
+																			"id": "persian_hair_rot",
+																			"invertAxis": "xy",
+																			"translate": [0, -7, 0],
+																			"boxes": [
+																				{"coordinates": [-3.5, 0.5, -1, 7, 7, 2], "textureOffset": [134, 15], "sizeAdd": 0.19}
+																			]
+																		}
+																	]
+																}
+															]
+														},
+														{
+															"id": "siberian_hair",
+															"invertAxis": "xy",
+															"translate": [0, -1.75, 14.5],
+															"boxes": [
+																{"coordinates": [-3, -3.75, -20.5, 6, 11, 3], "textureOffset": [84, 0]}
+															]
+														}
+													]
+												},
+												{
+													"id": "domestic_body",
+													"invertAxis": "xy",
+													"translate": [0, -4.45, -2],
+													"submodels": [
+														{
+															"id": "persian_body",
+															"invertAxis": "xy",
+															"translate": [0, 4.45, 16],
+															"boxes": [
+																{"coordinates": [-3, -7.35, -20.55, 6, 8, 8], "textureOffset": [110, 16]},
+																{"coordinates": [-3, -7.35, -22.25, 6, 8, 2], "textureOffset": [150, 22], "sizeAdd": -0.05}
+															]
+														},
+														{
+															"id": "tabby_body",
+															"invertAxis": "xy",
+															"translate": [0, 4.45, 16],
+															"boxes": [
+																{"coordinates": [-3, -7.35, -19.5, 6, 4, 7], "textureOffset": [17, 10], "sizeAdd": -0.25},
+																{"coordinates": [-3, -7.35, -22, 6, 4, 3], "textureOffset": [102, 0], "sizeAdd": -0.25}
+															]
+														},
+														{
+															"id": "domestic_tail",
+															"invertAxis": "xy",
+															"translate": [0, -2.25, 1.25],
+															"submodels": [
+																{
+																	"id": "domestic_tail_rot",
+																	"invertAxis": "xy",
+																	"translate": [0, 0.25, 0],
+																	"rotate": [-85, 0, 0],
+																	"submodels": [
+																		{
+																			"id": "domestic_tail_upper",
+																			"invertAxis": "xy",
+																			"translate": [0, -5.04567, -1.66088],
+																			"rotate": [22.5, 0, 0],
+																			"submodels": [
+																				{
+																					"id": "domestic_tail_upper2",
+																					"invertAxis": "xy",
+																					"translate": [0, 11.74567, 16.41088],
+																					"boxes": [
+																						{"coordinates": [-1, -11.74567, -17.41088, 2, 6, 2], "textureOffset": [34, 24]},
+																						{"coordinates": [-1, -11.74567, -19.41088, 2, 6, 2], "textureOffset": [65, 2]}
+																					]
+																				},
+																				{
+																					"id": "sphynx_tail_upper",
+																					"invertAxis": "xy",
+																					"translate": [0.5, 10.85866, 16.87263],
+																					"boxes": [
+																						{"coordinates": [-1, -11.74567, -17.41088, 1, 6, 1], "textureOffset": [43, 12]}
+																					]
+																				},
+																				{
+																					"id": "persian_somali_tail_upper",
+																					"invertAxis": "xy",
+																					"translate": [0, 11.74567, 16.41088],
+																					"boxes": [
+																						{"coordinates": [-2, -14.74567, -19.41088, 4, 9, 4], "textureOffset": [142, 2]},
+																						{"coordinates": [-2, -14.74567, -23.41088, 4, 9, 4], "textureOffset": [166, 19]}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			"id": "somali_tail_lower_rot",
+																			"invertAxis": "xy",
+																			"translate": [0, -4.79567, -3.16088],
+																			"rotate": [-12.5, 0, 0],
+																			"boxes": [
+																				{"coordinates": [-2, -6.95803, -1.36879, 4, 7, 3], "textureOffset": [189, 22], "sizeAdd": -0.01},
+																				{"coordinates": [-2, -6.95803, -5.34879, 4, 6, 4], "textureOffset": [176, 9], "sizeAdd": -0.01}
+																			]
+																		},
+																		{
+																			"id": "domestic_tail_lower",
+																			"invertAxis": "xy",
+																			"translate": [0, -4.04567, -1.66088],
+																			"submodels": [
+																				{
+																					"id": "domestic_tail_lower_rot",
+																					"invertAxis": "xy",
+																					"translate": [0, -1, 0],
+																					"rotate": [-12.5, 0, 0],
+																					"boxes": [
+																						{"coordinates": [-1, -6.3893, -0.77912, 2, 7, 2], "textureOffset": [42, 23], "sizeAdd": -0.01},
+																						{"coordinates": [-1, -6.3893, -2.75912, 2, 7, 2], "textureOffset": [41, 1], "sizeAdd": -0.01}
+																					]
+																				},
+																				{
+																					"id": "sphynx_tail_lower_rot2",
+																					"invertAxis": "xy",
+																					"translate": [0.5, -1, 0],
+																					"rotate": [-12.5, 0, 0],
+																					"boxes": [
+																						{"coordinates": [-1, -7.26855, -0.99574, 1, 7, 1], "textureOffset": [47, 12], "sizeAdd": -0.1}
+																					]
+																				}
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												},
+												{
+													"id": "domestic_head",
+													"invertAxis": "xy",
+													"translate": [0, 6.25, 2.75],
+													"submodels": [
+														{
+															"id": "headfull",
+															"invertAxis": "xy",
+															"translate": [0, 0, 0],
+															"rotate": [90, 0, 0],
+															"boxes": [
+																{"coordinates": [-2.5, 1.45, -2.05, 5, 2, 1], "textureOffset": [29, 21]},
+																{"coordinates": [-2.5, -2, -3, 5, 4, 4], "textureOffset": [3, 17]}
+															],
+															"submodels": [
+																{
+																	"id": "somali_side",
+																	"invertAxis": "xy",
+																	"translate": [0, -6.25, 11.25],
+																	"submodels": [
+																		{
+																			"id": "somali_side_left",
+																			"invertAxis": "xy",
+																			"translate": [-1.75, 5.3, -12.85],
+																			"boxes": [
+																				{"coordinates": [-2.25, -3, -0.5, 2, 6, 1], "textureOffset": [170, 9]}
+																			]
+																		},
+																		{
+																			"id": "somali_side_right",
+																			"invertAxis": "xy",
+																			"mirrorTexture": "u",
+																			"translate": [2, 5.3, -12.85],
+																			"boxes": [
+																				{"coordinates": [0, -3, -0.5, 2, 6, 1], "textureOffset": [170, 9]}
+																			]
+																		}
+																	]
+																},
+																{
+																	"id": "domestic_side",
+																	"invertAxis": "xy",
+																	"translate": [0, -6.25, 11.25],
+																	"boxes": [
+																		{"coordinates": [-4.25, 2.25, -13.35, 2, 6, 1], "textureOffset": [77, 3]}
+																	],
+																	"submodels": [
+																		{
+																			"id": "body_sub_24",
+																			"invertAxis": "xy",
+																			"mirrorTexture": "u",
+																			"translate": [0, 0, 0],
+																			"boxes": [
+																				{"coordinates": [2.25, 2.25, -13.35, 2, 6, 1], "textureOffset": [77, 3]}
+																			]
+																		}
+																	]
+																},
+																{
+																	"id": "domestic_side2",
+																	"invertAxis": "xy",
+																	"translate": [0, -6.25, 11.25],
+																	"boxes": [
+																		{"coordinates": [-4.5, 2.25, -13.35, 2, 6, 1], "textureOffset": [63, 17]}
+																	],
+																	"submodels": [
+																		{
+																			"id": "body_sub_26",
+																			"invertAxis": "xy",
+																			"mirrorTexture": "u",
+																			"translate": [0, 0, 0],
+																			"boxes": [
+																				{"coordinates": [2.5, 2.25, -13.35, 2, 6, 1], "textureOffset": [63, 17]}
+																			]
+																		}
+																	]
+																},
+																{
+																	"id": "russian_blue_side",
+																	"invertAxis": "xy",
+																	"translate": [0, -6.25, 11.25],
+																	"boxes": [
+																		{"coordinates": [-4.25, 2.25, -13.35, 2, 6, 1], "textureOffset": [182, 25]}
+																	],
+																	"submodels": [
+																		{
+																			"id": "russian_blue_side2",
+																			"invertAxis": "xy",
+																			"mirrorTexture": "u",
+																			"translate": [0, 0, 0],
+																			"boxes": [
+																				{"coordinates": [2.25, 2.25, -13.35, 2, 6, 1], "textureOffset": [182, 25]}
+																			]
+																		}
+																	]
+																},
+																{
+																	"id": "siamese_sphynx_head",
+																	"invertAxis": "xy",
+																	"translate": [0, -9, 9],
+																	"boxes": [
+																		{"coordinates": [-2.5, 7, -12, 5, 4, 4], "textureOffset": [50, 24], "sizeAdd": -0.1}
+																	]
+																},
+																{
+																	"id": "siberian_beard",
+																	"invertAxis": "xy",
+																	"translate": [0, -1.95, -2.5],
+																	"boxes": [
+																		{"coordinates": [-2.5, -3, 0, 5, 3, 1], "textureOffset": [80, 28], "sizeAdd": -0.01}
+																	]
+																},
+																{
+																	"id": "siberian_beard2",
+																	"invertAxis": "xy",
+																	"translate": [0, -1.75, -1.4],
+																	"boxes": [
+																		{"coordinates": [-2.5, -5, 0, 5, 5, 1], "textureOffset": [68, 26], "sizeAdd": -0.01}
+																	]
+																},
+																{
+																	"id": "sphynx_eyes",
+																	"invertAxis": "xy",
+																	"translate": [-1.325, 0.3, -2.66],
+																	"submodels": [
+																		{
+																			"id": "sphynx_eye_left",
+																			"invertAxis": "xy",
+																			"translate": [0, 0, 0],
+																			"rotate": [0, 0, -2.5],
+																			"boxes": [
+																				{"coordinates": [-0.9706, -0.5999, -0.45, 1, 1, 1], "textureOffset": [2, 0], "sizeAdd": -0.1},
+																				{"coordinates": [-0.4206, -0.5999, -0.51, 1, 1, 1], "textureOffset": [3, 17], "sizeAdd": -0.05}
+																			]
+																		},
+																		{
+																			"id": "sphynx_eye_right",
+																			"invertAxis": "xy",
+																			"mirrorTexture": "u",
+																			"translate": [2.65, 0, 0],
+																			"rotate": [0, 0, 2.5],
+																			"boxes": [
+																				{"coordinates": [-0.0294, -0.5999, -0.45, 1, 1, 1], "textureOffset": [2, 0], "sizeAdd": -0.1},
+																				{"coordinates": [-0.5794, -0.5999, -0.51, 1, 1, 1], "textureOffset": [3, 17], "sizeAdd": -0.05}
+																			]
+																		}
+																	]
+																},
+																{
+																	"id": "domestic_eyes",
+																	"invertAxis": "xy",
+																	"translate": [-1.325, 0.3, -2.66],
+																	"submodels": [
+																		{
+																			"id": "domestic_eye_left",
+																			"invertAxis": "xy",
+																			"translate": [0, 0, 0],
+																			"rotate": [0, 0, -2.5],
+																			"boxes": [
+																				{"coordinates": [-0.7706, -0.5999, -0.45, 1, 1, 1], "textureOffset": [9, 26], "sizeAdd": -0.1},
+																				{"coordinates": [-0.2206, -0.5999, -0.41, 1, 1, 1], "textureOffset": [16, 25], "sizeAdd": -0.05}
+																			]
+																		},
+																		{
+																			"id": "domestic_eye_right",
+																			"invertAxis": "xy",
+																			"mirrorTexture": "u",
+																			"translate": [2.65, 0, 0],
+																			"rotate": [0, 0, 2.5],
+																			"boxes": [
+																				{"coordinates": [-0.2294, -0.5999, -0.45, 1, 1, 1], "textureOffset": [9, 26], "sizeAdd": -0.1},
+																				{"coordinates": [-0.7794, -0.5999, -0.41, 1, 1, 1], "textureOffset": [16, 25], "sizeAdd": -0.05}
+																			]
+																		}
+																	]
+																},
+																{
+																	"id": "ragdoll_eyes",
+																	"invertAxis": "xy",
+																	"translate": [-1.325, 0.3, -2.66],
+																	"submodels": [
+																		{
+																			"id": "ragdoll_eyes_left",
+																			"invertAxis": "xy",
+																			"translate": [0, 0, 0],
+																			"rotate": [0, 0, -2.5],
+																			"boxes": [
+																				{"coordinates": [-0.76846, -0.64985, -0.4, 1, 1, 1], "textureOffset": [101, 13], "sizeAdd": -0.05},
+																				{"coordinates": [-0.31628, -0.67, -0.41, 1, 1, 1], "textureOffset": [22, 29], "sizeAdd": -0.05}
+																			]
+																		},
+																		{
+																			"id": "ragdoll_eyes_right",
+																			"invertAxis": "xy",
+																			"mirrorTexture": "u",
+																			"translate": [2.65, 0, 0],
+																			"rotate": [0, 0, 2.5],
+																			"boxes": [
+																				{"coordinates": [-0.23154, -0.64985, -0.4, 1, 1, 1], "textureOffset": [101, 13], "sizeAdd": -0.05},
+																				{"coordinates": [-0.68372, -0.67, -0.41, 1, 1, 1], "textureOffset": [22, 29], "sizeAdd": -0.05}
+																			]
+																		}
+																	]
+																},
+																{
+																	"id": "russianblue_eyes",
+																	"invertAxis": "xy",
+																	"translate": [-1.325, 0.5, -2.66],
+																	"submodels": [
+																		{
+																			"id": "russianblue_eyes_left",
+																			"invertAxis": "xy",
+																			"translate": [-0.15, 0, 0],
+																			"rotate": [0, 0, -7.5],
+																			"boxes": [
+																				{"coordinates": [-0.76274, -0.68647, -0.45, 1, 1, 1], "textureOffset": [48, 23], "sizeAdd": -0.05},
+																				{"coordinates": [-0.1171, -0.68675, -0.46, 1, 1, 1], "textureOffset": [45, 21], "sizeAdd": -0.02}
+																			]
+																		},
+																		{
+																			"id": "russianblue_eyes_right",
+																			"invertAxis": "xy",
+																			"mirrorTexture": "u",
+																			"translate": [2.8, 0, 0],
+																			"rotate": [0, 0, 5],
+																			"boxes": [
+																				{"coordinates": [-0.23774, -0.6908, -0.45, 1, 1, 1], "textureOffset": [48, 23], "sizeAdd": -0.05},
+																				{"coordinates": [-0.88338, -0.69108, -0.46, 1, 1, 1], "textureOffset": [45, 21], "sizeAdd": -0.02}
+																			]
+																		}
+																	]
+																},
+																{
+																	"id": "somali_eyes",
+																	"invertAxis": "xy",
+																	"translate": [-1.325, 0.5, -2.66],
+																	"submodels": [
+																		{
+																			"id": "russianblue_eyes_left2",
+																			"invertAxis": "xy",
+																			"translate": [-0.15, 0, 0],
+																			"rotate": [0, 0, -7.5],
+																			"boxes": [
+																				{"coordinates": [-0.7636, -0.67342, -0.45, 1, 1, 1], "textureOffset": [106, 28], "sizeAdd": -0.05},
+																				{"coordinates": [-0.255, -0.66064, -0.46, 1, 1, 1], "textureOffset": [103, 26], "sizeAdd": -0.02}
+																			]
+																		},
+																		{
+																			"id": "russianblue_eyes_right2",
+																			"invertAxis": "xy",
+																			"mirrorTexture": "u",
+																			"translate": [2.8, 0, 0],
+																			"rotate": [0, 0, 7.5],
+																			"boxes": [
+																				{"coordinates": [-0.2364, -0.67342, -0.45, 1, 1, 1], "textureOffset": [106, 28], "sizeAdd": -0.05},
+																				{"coordinates": [-0.745, -0.66064, -0.46, 1, 1, 1], "textureOffset": [103, 26], "sizeAdd": -0.02}
+																			]
+																		}
+																	]
+																},
+																{
+																	"id": "domestic_mouth",
+																	"invertAxis": "xy",
+																	"translate": [0, -1.1, -3.4],
+																	"rotate": [-100, 0, 0],
+																	"submodels": [
+																		{
+																			"id": "domestic_mouth2",
+																			"invertAxis": "xy",
+																			"translate": [0, 0.45, 0.05],
+																			"rotate": [-7.5, 0, 0],
+																			"submodels": [
+																				{
+																					"id": "domestic_mouth3",
+																					"invertAxis": "xy",
+																					"translate": [0, -22.5, 0.75],
+																					"rotate": [90, 0, 0],
+																					"boxes": [
+																						{"coordinates": [-0.5, -1.46276, -23.11611, 1, 1, 1], "textureOffset": [3, 19], "sizeAdd": -0.1}
+																					],
+																					"submodels": [
+																						{
+																							"id": "default_jaw",
+																							"invertAxis": "xy",
+																							"translate": [0, -19.85, -3.1],
+																							"submodels": [
+																								{
+																									"id": "default_mid_jaw",
+																									"invertAxis": "xy",
+																									"translate": [0, 36.75, 16.95],
+																									"boxes": [
+																										{"coordinates": [-1.5, -18.77457, -36.96965, 3, 1, 3], "textureOffset": [26, 1], "sizeAdd": -0.15}
+																									]
+																								},
+																								{
+																									"id": "default_lower_jaw",
+																									"invertAxis": "xy",
+																									"translate": [0, 18.03223, -18.12649],
+																									"boxes": [
+																										{"coordinates": [-1, -0.45775, -1.79102, 2, 1, 2], "textureOffset": [21, 21], "sizeAdd": -0.05}
+																									]
+																								},
+																								{
+																									"id": "domestic_mond",
+																									"invertAxis": "xy",
+																									"translate": [0, 36.75, 16.95],
+																									"boxes": [
+																										{"coordinates": [-1.5, -19.26177, -37.48221, 3, 2, 2], "textureOffset": [12, 27], "sizeAdd": -0.6}
+																									]
+																								},
+																								{
+																									"id": "sphynx_mond",
+																									"invertAxis": "xy",
+																									"translate": [0, 36.75, 16.95],
+																									"boxes": [
+																										{"coordinates": [-1.5, -19.5618, -37.48221, 3, 2, 2], "textureOffset": [57, 0], "sizeAdd": -0.6}
+																									]
+																								}
+																							]
+																						},
+																						{
+																							"id": "bridge",
+																							"invertAxis": "xy",
+																							"translate": [0.4, -6.75, -14.2],
+																							"rotate": [-22.5, 0, 0],
+																							"submodels": [
+																								{
+																									"id": "nosebridge",
+																									"invertAxis": "xy",
+																									"translate": [-0.4, 8.42837, -4.68642],
+																									"rotate": [-12.5, 0, 0],
+																									"boxes": [
+																										{"coordinates": [-0.5, -1.22665, -0.66999, 1, 2, 2], "textureOffset": [69, 22], "sizeAdd": 0.01}
+																									]
+																								}
+																							]
+																						},
+																						{
+																							"id": "domestic_whiskers",
+																							"invertAxis": "xy",
+																							"mirrorTexture": "u",
+																							"translate": [0.35922, -0.80425, -21.99118],
+																							"boxes": [
+																								{"coordinates": [-1.85922, -0.35652, -1.09525, 3, 1, 2], "textureOffset": [18, 3], "sizeAdd": -0.1}
+																							],
+																							"submodels": [
+																								{
+																									"id": "domestic_whiskers_right",
+																									"invertAxis": "xy",
+																									"translate": [0.89078, -0.08532, -0.93844],
+																									"rotate": [0, 0, -22.5],
+																									"submodels": [
+																										{
+																											"id": "domestic_whiskers_right_rot",
+																											"invertAxis": "xy",
+																											"translate": [0, 0, 0],
+																											"rotate": [90, 0, 0],
+																											"boxes": [
+																												{"coordinates": [-1.05, -0.5, -1.6, 3, 1, 3], "textureOffset": [24, 6], "sizeAdd": -0.7}
+																											]
+																										}
+																									]
+																								},
+																								{
+																									"id": "domestic_whiskers_left",
+																									"invertAxis": "xy",
+																									"translate": [-1.60922, -0.08532, -0.93844],
+																									"rotate": [0, 0, 22.5],
+																									"submodels": [
+																										{
+																											"id": "domestic_whiskers_left_rot",
+																											"invertAxis": "xy",
+																											"mirrorTexture": "u",
+																											"translate": [0, 0, 0],
+																											"rotate": [90, 0, 0],
+																											"boxes": [
+																												{"coordinates": [-1.95, -0.5, -1.6, 3, 1, 3], "textureOffset": [24, 6], "sizeAdd": -0.7}
+																											]
+																										}
+																									]
+																								}
+																							]
+																						},
+																						{
+																							"id": "domestic_nose",
+																							"invertAxis": "xy",
+																							"translate": [0, -1.00201, -22.52275],
+																							"boxes": [
+																								{"coordinates": [-1.5, -1.1677, -1.66127, 3, 3, 3], "textureOffset": [0, 25], "sizeAdd": -0.99}
+																							]
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			"id": "domestic_tongue",
+																			"invertAxis": "xy",
+																			"translate": [0, -0.2177, 1.5999],
+																			"submodels": [
+																				{
+																					"id": "domestic_tongue_rot",
+																					"invertAxis": "xy",
+																					"translate": [0, 0.50741, -3.10775],
+																					"rotate": [12.5, 0, 0],
+																					"boxes": [
+																						{"coordinates": [-1.5, -1.5, -1.5, 3, 3, 3], "textureOffset": [53, 4], "sizeAdd": -0.99}
+																					]
+																				}
+																			]
+																		}
+																	]
+																},
+																{
+																	"id": "ears",
+																	"invertAxis": "xy",
+																	"translate": [0, 0, 0],
+																	"submodels": [
+																		{
+																			"id": "sphynx_ears",
+																			"invertAxis": "xy",
+																			"translate": [-1.45, 1.2, -1.75],
+																			"submodels": [
+																				{
+																					"id": "sphynx_ear_left",
+																					"invertAxis": "xy",
+																					"translate": [0, 0, 0],
+																					"rotate": [0, 22.5, 20],
+																					"boxes": [
+																						{"coordinates": [-1.75, -0.5, -0.5, 3, 5, 1], "textureOffset": [102, 7]}
+																					]
+																				},
+																				{
+																					"id": "sphynx_ear_right",
+																					"invertAxis": "xy",
+																					"mirrorTexture": "u",
+																					"translate": [2.9, 0, 0],
+																					"rotate": [0, -22.5, -20],
+																					"boxes": [
+																						{"coordinates": [-1.25, -0.5, -0.5, 3, 5, 1], "textureOffset": [102, 7]}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			"id": "savannah_ears",
+																			"invertAxis": "xy",
+																			"translate": [1.45, 2.2, -1.75],
+																			"submodels": [
+																				{
+																					"id": "tabby_ear_right4",
+																					"invertAxis": "xy",
+																					"mirrorTexture": "u",
+																					"translate": [0, 0, 0],
+																					"rotate": [-4.11405, -22.13991, -9.19476],
+																					"boxes": [
+																						{"coordinates": [-1.25, -0.5, -0.5, 3, 4, 1], "textureOffset": [110, 19]}
+																					]
+																				},
+																				{
+																					"id": "tabby_ear_left4",
+																					"invertAxis": "xy",
+																					"translate": [-2.9, 0, 0],
+																					"rotate": [-4.11405, 22.13991, 9.19476],
+																					"boxes": [
+																						{"coordinates": [-1.75, -0.5, -0.5, 3, 4, 1], "textureOffset": [110, 19]}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			"id": "domestic_ears",
+																			"invertAxis": "xy",
+																			"translate": [1.45, 1.2, -1.75],
+																			"submodels": [
+																				{
+																					"id": "tabby_ear_right",
+																					"invertAxis": "xy",
+																					"mirrorTexture": "u",
+																					"translate": [0, 0, 0],
+																					"rotate": [0, -22.5, -20],
+																					"boxes": [
+																						{"coordinates": [-1.25, -0.5, -0.5, 3, 4, 1], "textureOffset": [26, 24]}
+																					]
+																				},
+																				{
+																					"id": "tabby_ear_left",
+																					"invertAxis": "xy",
+																					"translate": [-2.9, 0, 0],
+																					"rotate": [0, 22.5, 20],
+																					"boxes": [
+																						{"coordinates": [-1.75, -0.5, -0.5, 3, 4, 1], "textureOffset": [26, 24]}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			"id": "russian_blue_ears",
+																			"invertAxis": "xy",
+																			"translate": [1.45, 1.2, -1.75],
+																			"submodels": [
+																				{
+																					"id": "russian_blue_ear_right",
+																					"invertAxis": "xy",
+																					"mirrorTexture": "u",
+																					"translate": [0, 0, 0],
+																					"rotate": [3.0947, -22.2971, -28.11],
+																					"boxes": [
+																						{"coordinates": [-1.25, -0.5, -0.5, 3, 4, 1], "textureOffset": [102, 18]}
+																					]
+																				},
+																				{
+																					"id": "russian_blue_ear_left",
+																					"invertAxis": "xy",
+																					"translate": [-2.9, 0, 0],
+																					"rotate": [3.0947, 22.2971, 28.11],
+																					"boxes": [
+																						{"coordinates": [-1.75, -0.5, -0.5, 3, 4, 1], "textureOffset": [102, 18]}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			"id": "somali_ears",
+																			"invertAxis": "xy",
+																			"translate": [1.45, 1.2, -1.75],
+																			"submodels": [
+																				{
+																					"id": "somali_ears_right",
+																					"invertAxis": "xy",
+																					"mirrorTexture": "u",
+																					"translate": [0.25, 0, 0],
+																					"rotate": [2.68463, -22.34751, -27.03036],
+																					"boxes": [
+																						{"coordinates": [-1.06662, -0.43779, -0.62586, 3, 4, 1], "textureOffset": [176, 0]}
+																					]
+																				},
+																				{
+																					"id": "somali_ears_left",
+																					"invertAxis": "xy",
+																					"translate": [-3.4, 0, 0],
+																					"rotate": [2.68463, 22.34751, 27.03036],
+																					"boxes": [
+																						{"coordinates": [-1.73239, -0.55619, -0.53596, 3, 4, 1], "textureOffset": [176, 0]}
+																					]
+																				}
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												},
+												{
+													"id": "persian_head",
+													"invertAxis": "xy",
+													"translate": [0, 6.25, 0.75],
+													"submodels": [
+														{
+															"id": "headfull2",
+															"invertAxis": "xy",
+															"translate": [0, 0, 0],
+															"rotate": [90, 0, 0],
+															"boxes": [
+																{"coordinates": [-2.5, 1.95, -2.05, 5, 1, 1], "textureOffset": [83, 14]},
+																{"coordinates": [-2.5, -2.2, -2.8, 5, 4, 4], "textureOffset": [69, 13], "sizeAdd": 0.2}
+															],
+															"submodels": [
+																{
+																	"id": "domestic_side4",
+																	"invertAxis": "xy",
+																	"translate": [0, -6.25, 11.25],
+																	"boxes": [
+																		{"coordinates": [-5.9, 2.25, -13.35, 3, 6, 1], "textureOffset": [83, 21], "sizeAdd": 0.2}
+																	],
+																	"submodels": [
+																		{
+																			"id": "body_sub_74",
+																			"invertAxis": "xy",
+																			"mirrorTexture": "u",
+																			"translate": [0, 0, 0],
+																			"boxes": [
+																				{"coordinates": [2.9, 2.25, -13.35, 3, 6, 1], "textureOffset": [83, 21], "sizeAdd": 0.2}
+																			]
+																		}
+																	]
+																},
+																{
+																	"id": "persian_beard",
+																	"invertAxis": "xy",
+																	"translate": [0, -1.95, -2.5],
+																	"boxes": [
+																		{"coordinates": [-2.5, -3.6, 0, 5, 3, 1], "textureOffset": [134, 2], "sizeAdd": 0.19}
+																	]
+																},
+																{
+																	"id": "siberian_beard4",
+																	"invertAxis": "xy",
+																	"translate": [0, -1.75, -1.4]
+																},
+																{
+																	"id": "domestic_ears2",
+																	"invertAxis": "xy",
+																	"translate": [1.45, 1.2, -1.75],
+																	"submodels": [
+																		{
+																			"id": "tabby_ear_right2",
+																			"invertAxis": "xy",
+																			"mirrorTexture": "u",
+																			"translate": [0, 0, 0],
+																			"rotate": [0, -22.5, -20],
+																			"boxes": [
+																				{"coordinates": [-1.25, -0.25, -0.5, 3, 4, 1], "textureOffset": [75, 21]}
+																			]
+																		},
+																		{
+																			"id": "tabby_ear_left2",
+																			"invertAxis": "xy",
+																			"translate": [-2.9, 0, 0],
+																			"rotate": [0, 22.5, 20],
+																			"boxes": [
+																				{"coordinates": [-1.75, -0.25, -0.5, 3, 4, 1], "textureOffset": [75, 21]}
+																			]
+																		}
+																	]
+																},
+																{
+																	"id": "persian_eyes",
+																	"invertAxis": "xy",
+																	"translate": [-1.325, 0.2, -2.66],
+																	"submodels": [
+																		{
+																			"id": "persian_eye_right",
+																			"invertAxis": "xy",
+																			"translate": [0, 0, 0],
+																			"rotate": [0, 0, -2.5],
+																			"boxes": [
+																				{"coordinates": [-0.26192, -0.59952, -0.45, 1, 1, 1], "textureOffset": [65, 0], "sizeAdd": -0.05},
+																				{"coordinates": [-0.72936, -0.60028, -0.41, 1, 1, 1], "textureOffset": [55, 0]}
+																			]
+																		},
+																		{
+																			"id": "persian_eye_left",
+																			"invertAxis": "xy",
+																			"mirrorTexture": "u",
+																			"translate": [2.65, 0, 0],
+																			"rotate": [0, 0, 2.5],
+																			"boxes": [
+																				{"coordinates": [-0.73808, -0.59952, -0.45, 1, 1, 1], "textureOffset": [65, 0], "sizeAdd": -0.05},
+																				{"coordinates": [-0.27064, -0.60028, -0.41, 1, 1, 1], "textureOffset": [55, 0]}
+																			]
+																		}
+																	]
+																},
+																{
+																	"id": "persian_mouth2",
+																	"invertAxis": "xy",
+																	"translate": [0, 0, 0],
+																	"submodels": [
+																		{
+																			"id": "persian2",
+																			"invertAxis": "xy",
+																			"translate": [0, -1.25328, -3.47567],
+																			"rotate": [-5, 0, 0],
+																			"boxes": [
+																				{"coordinates": [-1.5, -0.06415, -0.22509, 3, 1, 1], "textureOffset": [18, 1]},
+																				{"coordinates": [-1.5, -1.78424, -0.9004, 3, 3, 3], "textureOffset": [51, 12], "sizeAdd": -0.7},
+																				{"coordinates": [0.75, -1.06415, -0.22509, 2, 1, 1], "textureOffset": [64, 24]},
+																				{"coordinates": [-1, -1.28991, -0.03495, 2, 2, 3], "textureOffset": [63, 12]},
+																				{"coordinates": [-0.5, -0.26415, -0.49509, 1, 1, 1], "textureOffset": [64, 26], "sizeAdd": -0.2}
+																			],
+																			"submodels": [
+																				{
+																					"id": "body_sub_89",
+																					"invertAxis": "xy",
+																					"mirrorTexture": "u",
+																					"translate": [0, 0, 0],
+																					"boxes": [
+																						{"coordinates": [-2.75, -1.06415, -0.22509, 2, 1, 1], "textureOffset": [64, 24]}
+																					]
+																				},
+																				{
+																					"id": "domestic_whiskers4",
+																					"invertAxis": "xy",
+																					"mirrorTexture": "u",
+																					"translate": [0.35922, 1.29904, 0.38449],
+																					"submodels": [
+																						{
+																							"id": "persian_whiskers_right",
+																							"invertAxis": "xy",
+																							"translate": [0.89078, -1.33532, -0.93844],
+																							"rotate": [0, 0, -22.5],
+																							"submodels": [
+																								{
+																									"id": "domestic_whiskers_right_rot4",
+																									"invertAxis": "xy",
+																									"translate": [-0.47835, 1.15485, 0],
+																									"rotate": [90, 0, 0],
+																									"boxes": [
+																										{"coordinates": [-0.53439, -0.01559, -0.35521, 3, 1, 3], "textureOffset": [92, 14], "sizeAdd": -0.7}
+																									]
+																								}
+																							]
+																						},
+																						{
+																							"id": "persian_whiskers_left",
+																							"invertAxis": "xy",
+																							"translate": [-1.60922, -1.33532, -0.93844],
+																							"rotate": [0, 0, 22.5],
+																							"submodels": [
+																								{
+																									"id": "domestic_whiskers_left_rot4",
+																									"invertAxis": "xy",
+																									"mirrorTexture": "u",
+																									"translate": [0.47835, 1.15485, 0],
+																									"rotate": [90, 0, 0],
+																									"boxes": [
+																										{"coordinates": [-2.46561, -0.01559, -0.35521, 3, 1, 3], "textureOffset": [92, 14], "sizeAdd": -0.7}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					"id": "tabby_nose2",
+																					"invertAxis": "xy",
+																					"translate": [0, 0.63358, -0.00835],
+																					"rotate": [7.5, 0, 0],
+																					"boxes": [
+																						{"coordinates": [-1.5, -1.5, -1.4, 3, 3, 3], "textureOffset": [51, 18], "sizeAdd": -1.05}
+																					]
+																				},
+																				{
+																					"id": "persian_tongue",
+																					"invertAxis": "xy",
+																					"translate": [0, 1.83559, 0.32557],
+																					"submodels": [
+																						{
+																							"id": "domestic_tongue_rot2",
+																							"invertAxis": "xy",
+																							"translate": [0, -2.49259, -0.10775],
+																							"rotate": [-12.5, -180, 0],
+																							"boxes": [
+																								{"coordinates": [-1.5, -1.5, -1.5, 3, 3, 3], "textureOffset": [138, 26], "sizeAdd": -0.99}
+																							]
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												},
+												{
+													"id": "jellie_head",
+													"invertAxis": "xy",
+													"translate": [0, 6.25, 0.75],
+													"submodels": [
+														{
+															"id": "headfull3",
+															"invertAxis": "xy",
+															"translate": [0, 0, 2],
+															"rotate": [90, 0, 0],
+															"boxes": [
+																{"coordinates": [-2.5, -2, -3, 5, 4, 4], "textureOffset": [158, 0]}
+															],
+															"submodels": [
+																{
+																	"id": "jellie_dot",
+																	"invertAxis": "xy",
+																	"translate": [0, -6.25, 11.25],
+																	"boxes": [
+																		{"coordinates": [2.5, 4.25, -13.28, 1, 3, 2], "textureOffset": [37, 12]}
+																	],
+																	"submodels": [
+																		{
+																			"id": "body_sub_101",
+																			"invertAxis": "xy",
+																			"mirrorTexture": "u",
+																			"translate": [0, 0, 0],
+																			"boxes": [
+																				{"coordinates": [-3.5, 4.25, -13.28, 1, 3, 2], "textureOffset": [37, 12]}
+																			]
+																		}
+																	]
+																},
+																{
+																	"id": "domestic_ears3",
+																	"invertAxis": "xy",
+																	"translate": [1.45, 1.2, -1.75],
+																	"submodels": [
+																		{
+																			"id": "tabby_ear_left3",
+																			"invertAxis": "xy",
+																			"translate": [-2.9, 0, 0],
+																			"rotate": [2.06754, 22.40972, 25.40961],
+																			"boxes": [
+																				{"coordinates": [-1.75, -1, -0.5, 3, 4, 1], "textureOffset": [91, 23]}
+																			]
+																		},
+																		{
+																			"id": "tabby_ear_right3",
+																			"invertAxis": "xy",
+																			"mirrorTexture": "u",
+																			"translate": [0, 0, 0],
+																			"rotate": [2.06754, -22.40972, -25.40961],
+																			"boxes": [
+																				{"coordinates": [-1.25, -1, -0.5, 3, 4, 1], "textureOffset": [91, 23]}
+																			]
+																		}
+																	]
+																},
+																{
+																	"id": "jellie_eyes",
+																	"invertAxis": "xy",
+																	"translate": [-1.325, 0.5, -2.66],
+																	"submodels": [
+																		{
+																			"id": "jellie_eye_left",
+																			"invertAxis": "xy",
+																			"translate": [0, 0, 0],
+																			"rotate": [0, 0, -7.5],
+																			"boxes": [
+																				{"coordinates": [-0.86188, -0.69952, -0.45, 1, 1, 1], "textureOffset": [41, 21], "sizeAdd": -0.05},
+																				{"coordinates": [-0.21624, -0.6998, -0.46, 1, 1, 1], "textureOffset": [43, 19], "sizeAdd": -0.05}
+																			]
+																		},
+																		{
+																			"id": "jellie_eye_right",
+																			"invertAxis": "xy",
+																			"mirrorTexture": "u",
+																			"translate": [2.65, 0, 0],
+																			"rotate": [0, 0, 5],
+																			"boxes": [
+																				{"coordinates": [-0.13812, -0.69952, -0.45, 1, 1, 1], "textureOffset": [41, 21], "sizeAdd": -0.05},
+																				{"coordinates": [-0.78376, -0.6998, -0.46, 1, 1, 1], "textureOffset": [43, 19], "sizeAdd": -0.05}
+																			]
+																		}
+																	]
+																},
+																{
+																	"id": "jellie_mouth",
+																	"invertAxis": "xy",
+																	"translate": [0, -0.85, -2.8],
+																	"rotate": [-92.5, 0, 0],
+																	"submodels": [
+																		{
+																			"id": "domestic_mouth7",
+																			"invertAxis": "xy",
+																			"translate": [0, 0.45, 0.05],
+																			"rotate": [-7.5, 0, 0],
+																			"submodels": [
+																				{
+																					"id": "domestic_mouth8",
+																					"invertAxis": "xy",
+																					"translate": [0, -22.5, 0.75],
+																					"rotate": [90, 0, 0],
+																					"boxes": [
+																						{"coordinates": [-0.5, -1.46276, -23.11611, 1, 1, 1], "textureOffset": [3, 19], "sizeAdd": -0.1}
+																					],
+																					"submodels": [
+																						{
+																							"id": "default_jaw3",
+																							"invertAxis": "xy",
+																							"translate": [0, -19.85, -3.1],
+																							"submodels": [
+																								{
+																									"id": "default_mid_jaw3",
+																									"invertAxis": "xy",
+																									"translate": [0, 36.75, 16.95],
+																									"boxes": [
+																										{"coordinates": [-1.5, -18.77457, -36.96965, 3, 1, 3], "textureOffset": [90, 18], "sizeAdd": -0.15}
+																									]
+																								},
+																								{
+																									"id": "default_lower_jaw3",
+																									"invertAxis": "xy",
+																									"translate": [0, 18.03223, -18.12649],
+																									"boxes": [
+																										{"coordinates": [-1, -0.45775, -1.79102, 2, 1, 2], "textureOffset": [33, 6], "sizeAdd": -0.05}
+																									]
+																								},
+																								{
+																									"id": "domestic_mond3",
+																									"invertAxis": "xy",
+																									"translate": [0, 36.75, 16.95],
+																									"boxes": [
+																										{"coordinates": [-1.5, -19.36177, -37.48221, 3, 2, 2], "textureOffset": [152, 18], "sizeAdd": -0.65}
+																									]
+																								}
+																							]
+																						},
+																						{
+																							"id": "bridge3",
+																							"invertAxis": "xy",
+																							"translate": [0.4, -6.75, -14.2],
+																							"rotate": [-22.5, 0, 0],
+																							"submodels": [
+																								{
+																									"id": "nosebridge3",
+																									"invertAxis": "xy",
+																									"translate": [-0.4, 8.42837, -4.68642],
+																									"rotate": [-12.5, 0, 0],
+																									"boxes": [
+																										{"coordinates": [-0.5, -1.12665, -0.66999, 1, 2, 2], "textureOffset": [60, 11], "sizeAdd": 0.01}
+																									]
+																								}
+																							]
+																						},
+																						{
+																							"id": "domestic_whiskers3",
+																							"invertAxis": "xy",
+																							"mirrorTexture": "u",
+																							"translate": [0.35922, -0.80425, -21.99118],
+																							"boxes": [
+																								{"coordinates": [-1.85922, -0.35652, -1.09525, 3, 1, 2], "textureOffset": [103, 13], "sizeAdd": -0.1}
+																							],
+																							"submodels": [
+																								{
+																									"id": "domestic_whiskers_right3",
+																									"invertAxis": "xy",
+																									"translate": [0.89078, -0.08532, -0.93844],
+																									"rotate": [0, 0, -22.5],
+																									"submodels": [
+																										{
+																											"id": "domestic_whiskers_right_rot3",
+																											"invertAxis": "xy",
+																											"translate": [0, 0, 0],
+																											"rotate": [90, 0, 0],
+																											"boxes": [
+																												{"coordinates": [-1.05, -0.5, -1.6, 3, 1, 3], "textureOffset": [155, 14], "sizeAdd": -0.7}
+																											]
+																										}
+																									]
+																								},
+																								{
+																									"id": "domestic_whiskers_left3",
+																									"invertAxis": "xy",
+																									"translate": [-1.60922, -0.08532, -0.93844],
+																									"rotate": [0, 0, 22.5],
+																									"submodels": [
+																										{
+																											"id": "domestic_whiskers_left_rot3",
+																											"invertAxis": "xy",
+																											"mirrorTexture": "u",
+																											"translate": [0, 0, 0],
+																											"rotate": [90, 0, 0],
+																											"boxes": [
+																												{"coordinates": [-1.95, -0.5, -1.6, 3, 1, 3], "textureOffset": [155, 14], "sizeAdd": -0.7}
+																											]
+																										}
+																									]
+																								}
+																							]
+																						},
+																						{
+																							"id": "domestic_nose3",
+																							"invertAxis": "xy",
+																							"translate": [0, -1.00201, -22.52275],
+																							"boxes": [
+																								{"coordinates": [-1.5, -1.1677, -1.66127, 3, 3, 3], "textureOffset": [158, 8], "sizeAdd": -1.05}
+																							]
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"id": "domestic_front_left_leg",
+									"invertAxis": "xy",
+									"translate": [-1.2, -6.75, -4],
+									"submodels": [
+										{
+											"id": "domestic",
+											"invertAxis": "xy",
+											"translate": [1.2, -5.25, 15],
+											"boxes": [
+												{"coordinates": [-2.45, 4, -23, 2, 2, 7], "textureOffset": [42, 3]}
+											]
+										},
+										{
+											"id": "sphynx",
+											"invertAxis": "xy",
+											"translate": [0, 0, -0.2],
+											"boxes": [
+												{"coordinates": [-1.25, -1.25, -8, 2, 2, 7], "textureOffset": [92, 23], "sizeAdd": -0.2}
+											]
+										}
+									]
+								},
+								{
+									"id": "domestic_front_right_leg",
+									"invertAxis": "xy",
+									"translate": [1.2, -6.75, -4],
+									"submodels": [
+										{
+											"id": "domestic2",
+											"invertAxis": "xy",
+											"mirrorTexture": "u",
+											"translate": [-1.2, -5.25, 15],
+											"boxes": [
+												{"coordinates": [0.45, 4, -23, 2, 2, 7], "textureOffset": [42, 3]}
+											]
+										},
+										{
+											"id": "sphynx2",
+											"invertAxis": "xy",
+											"mirrorTexture": "u",
+											"translate": [0, 0, -0.2],
+											"boxes": [
+												{"coordinates": [-0.75, -1.25, -8, 2, 2, 7], "textureOffset": [92, 23], "sizeAdd": -0.2}
+											]
+										}
+									]
+								},
+								{
+									"id": "domestic_back_right_leg",
+									"invertAxis": "xy",
+									"mirrorTexture": "u",
+									"translate": [1.2, -17.5, -4],
+									"submodels": [
+										{
+											"id": "domestic3",
+											"invertAxis": "xy",
+											"mirrorTexture": "u",
+											"translate": [0, 0, 0],
+											"boxes": [
+												{"coordinates": [-0.75, -0.75, -8, 2, 2, 7], "textureOffset": [66, 3]}
+											]
+										},
+										{
+											"id": "sphynx3",
+											"invertAxis": "xy",
+											"mirrorTexture": "u",
+											"translate": [0, 0, 0],
+											"boxes": [
+												{"coordinates": [-0.75, -0.75, -8, 2, 2, 7], "textureOffset": [92, 23], "sizeAdd": -0.2}
+											]
+										}
+									]
+								},
+								{
+									"id": "domestic_back_left_leg",
+									"invertAxis": "xy",
+									"mirrorTexture": "u",
+									"translate": [-1.2, -17.5, -4],
+									"submodels": [
+										{
+											"id": "domestic4",
+											"invertAxis": "xy",
+											"translate": [0, 0, 0],
+											"boxes": [
+												{"coordinates": [-1.25, -0.75, -8, 2, 2, 7], "textureOffset": [66, 3]}
+											]
+										},
+										{
+											"id": "sphynx4",
+											"invertAxis": "xy",
+											"translate": [0, 0, 0],
+											"boxes": [
+												{"coordinates": [-1.25, -0.75, -8, 2, 2, 7], "textureOffset": [92, 23], "sizeAdd": -0.2}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"animations": [
+				{
+					"this.rx": 0,
+					"body.tz": "if(body.rx<1, torad(-200), torad(-725))",
+					"body.ty": "if(body.rx<1, torad(350), torad(700))",
+					"default_mane.rx": "if(body.rx<1, torad(10), torad(0))",
+					"default_mane.tz": "if(body.rx<1, torad(-150), torad(-100))",
+					"default_mane.ty": "if(body.rx<1, torad(-70), torad(-100))",
+					"domestic_whiskers_left.rz": "torad(22.5)+-sin(limb_swing)*limb_speed*0.5",
+					"domestic_whiskers_right.rz": "torad(-22.5)  +sin(limb_swing)*limb_speed*0.5",
+					"persian_whiskers_left.rz": "torad(22.5)+-sin(limb_swing)*limb_speed*0.5",
+					"persian_whiskers_right.rz": "torad(-22.5)  +sin(limb_swing)*limb_speed*0.5",
+					"domestic_nolegs.tz": "torad(-150)+ sin(time*0.01)*0.01+ -sin(time*0.2)*0.01  +sin(limb_swing*0.6)*limb_speed*0.5",
+					"domestic_nolegs.ry": "sin(limb_swing*0.8)*limb_speed*0.1",
+					"domestic_nolegs.rx": "sin(time*0.05)*0.01  +-sin(time*0.1)*0.005  +sin(limb_swing*1.5)*limb_speed*0.1",
+					"persian_body.tz": "if(body.rx<1, torad(850), torad(905))",
+					"persian_body.ty": "if(body.rx<1, torad(-400), torad(-250))",
+					"domestic_head.rz": "-head_yaw* 0.01",
+					"domestic_head.rx": "head_pitch* 0.02+if(body.rx<1, torad(40), 0)",
+					"domestic_head.tz": "sin(time*0.05)*0.1+torad(120)+sin(limb_swing*3)*limb_speed*0.2+if(body.rx<1, torad(-100), 0)",
+					"domestic_head.ty": "torad(-400)+if(body.rx<1, torad(-50), 0)",
+					"domestic_head.sx": "if(is_child, torad(100), torad(55))",
+					"domestic_head.sy": "if(is_child, torad(100), torad(55))",
+					"domestic_head.sz": "if(is_child, torad(100), torad(55))",
+					"persian_head.rz": "-head_yaw* 0.01",
+					"persian_head.rx": "head_pitch* 0.02+if(body.rx<1, torad(40), 0)",
+					"persian_head.tz": "sin(time*0.05)*0.1+torad(80)+sin(limb_swing*3)*limb_speed*0.2+if(body.rx<1, torad(-120), 0)",
+					"persian_head.ty": "torad(-350)+if(body.rx<1, torad(-20), 0)",
+					"persian_head.sx": "if(is_child, torad(100), torad(55))",
+					"persian_head.sy": "if(is_child, torad(100), torad(55))",
+					"persian_head.sz": "if(is_child, torad(100), torad(55))",
+					"domestic_front_left_leg.rx": "if(limb_speed>0||body.rx<1, 0, -sin(time*0.1)*0.005)+if(limb_speed > 0.8, sin(limb_swing)*limb_speed,sin(limb_swing)*limb_speed)     +if(body.rx<1,torad(40),0)",
+					"domestic_front_left_leg.ty": "torad(400)   +if(body.rx<1,torad(0),0)",
+					"domestic_front_left_leg.tz": "sin(limb_swing*2)*limb_speed*0.5+torad(-230)+if(body.rx<1,torad(-200),0)",
+					"domestic_front_right_leg.rx": "if(limb_speed>0||body.rx<1, 0, -sin(time*0.1)*0.005)+if(limb_speed > 0.8, sin(limb_swing)*limb_speed,-sin(limb_swing)*limb_speed)   +if(body.rx<1,torad(40),0)",
+					"domestic_front_right_leg.ty": "torad(385)   +if(body.rx<1,torad(0),0)",
+					"domestic_front_right_leg.tz": "sin(limb_swing*2)*limb_speed*0.5+torad(-230)+if(body.rx<1,torad(-200),0)",
+					"domestic_back_left_leg.rx": "if(limb_speed > 0.8, -sin(limb_swing)*limb_speed,-sin(limb_swing)*limb_speed)    +if(body.rx<1,torad(-50),0)",
+					"domestic_back_left_leg.ry": "if(body.rx<1, torad(-30), 0)",
+					"domestic_back_left_leg.ty": "torad(1000)    +if(body.rx<1,torad(0),0)",
+					"domestic_back_left_leg.tz": "sin(limb_swing*2)*limb_speed*0.5+torad(-230)    +if(body.rx<1,torad(-200),0)",
+					"domestic_back_right_leg.rx": "if(limb_speed > 0.8, -sin(limb_swing)*limb_speed,sin(limb_swing)*limb_speed)   +if(body.rx<1,torad(-50),0) ",
+					"domestic_back_right_leg.ry": "if(body.rx<1, torad(30), 0)",
+					"domestic_back_right_leg.ty": "torad(1000)+    if(body.rx<1,torad(0),0)",
+					"domestic_back_right_leg.tz": "sin(limb_swing*2)*limb_speed*0.5+torad(-230)   +if(body.rx<1,torad(-200),0)",
+					"domestic_tail.rx": "+if(body.rx>1, 0, torad(-100))+if(body.rx<1, torad(50), torad(-100)+sin(limb_swing*1.2)*limb_speed*0.5+-sin(limb_swing*0.5)*limb_speed*0.2)+if(limb_speed>0.2, torad(100),0)",
+					"domestic_tail.ry": "if(body.rx<1, torad(130), 0)",
+					"domestic_tail.rz": "if(body.rx<1, torad(280), sin(time*0.1)*0.1)",
+					"domestic_tail_lower.rz": "sin(limb_swing)*limb_speed*0.2+if(body.rx<1, 0, sin(time*0.2)*0.1)",
+					"domestic_tail_lower.rx": "sin(limb_swing)*limb_speed*0.3",
+					"domestic_nose.sx": "torad(55)+sin(time*0.05)*0.02",
+					"domestic_nose.sy": "torad(55)+sin(time*0.05)*0.02",
+					"domestic_nose.sz": "torad(55)+sin(time*0.05)*0.02",
+					"siberian_beard2.rx": "if(body.rx<1, torad(-30), 0)+-sin(limb_swing)*limb_speed*0.3",
+					"persian_beard.rx": "if(body.rx<1, torad(-30), 0)+-sin(limb_swing)*limb_speed*0.3",
+					"persian_hair.rx": "sin(limb_swing)*limb_speed*0.05+if(body.rx<1, torad(5), 0)",
+					"jellie_head.rz": "-head_yaw* 0.01",
+					"jellie_head.rx": "head_pitch* 0.02+if(body.rx<1, torad(40), 0)",
+					"jellie_head.tz": "sin(time*0.05)*0.1+torad(70)+sin(limb_swing*3)*limb_speed*0.2+if(body.rx<1, torad(-120), 0)",
+					"jellie_head.ty": "torad(-360)+if(body.rx<1, torad(-20), 0)",
+					"jellie_head.sx": "if(is_child, torad(100), torad(55))",
+					"jellie_head.sy": "if(is_child, torad(100), torad(55))",
+					"jellie_head.sz": "if(is_child, torad(100), torad(55))"
+				}
+			]
+		},
+		{
+			"part": "front_left_leg",
+			"id": "front_left_leg",
+			"invertAxis": "xy",
+			"translate": [1.1, -9.9, 5],
+			"boxes": [
+				{"coordinates": [-2.1, -0.1, -5, 2, 10, 2], "textureOffset": [220, 0]}
+			]
+		},
+		{
+			"part": "front_right_leg",
+			"id": "front_right_leg",
+			"invertAxis": "xy",
+			"translate": [-1.1, -9.9, 5],
+			"boxes": [
+				{"coordinates": [0.1, -0.1, -5, 2, 10, 2], "textureOffset": [220, 0]}
+			]
+		},
+		{
+			"part": "back_left_leg",
+			"id": "back_left_leg",
+			"invertAxis": "xy",
+			"translate": [1.1, -6, -5],
+			"boxes": [
+				{"coordinates": [-2.1, 0, 6, 2, 6, 2], "textureOffset": [222, 18]}
+			]
+		},
+		{
+			"part": "back_right_leg",
+			"id": "back_right_leg",
+			"invertAxis": "xy",
+			"translate": [-1.1, -6, -5],
+			"boxes": [
+				{"coordinates": [0.1, 1, 6, 2, 6, 2], "textureOffset": [222, 18]}
+			]
+		},
+		{
+			"part": "tail",
+			"id": "tail",
+			"invertAxis": "xy",
+			"translate": [0, -8.5, -8],
+			"rotate": [-90, 0, 0],
+			"boxes": [
+				{"coordinates": [-0.5, 0.5, 8, 1, 8, 1], "textureOffset": [238, 0]}
+			],
+			"animations": [
+				{
+					"this.rx": 0
+				}
+			]
+		},
+		{
+			"part": "tail2",
+			"id": "tail2",
+			"invertAxis": "xy",
+			"translate": [0, -8.5, -16],
+			"rotate": [-90, 0, 0],
+			"boxes": [
+				{"coordinates": [-0.5, 0.5, 16, 1, 8, 1], "textureOffset": [232, 0]}
+			],
+			"animations": [
+				{
+					"this.rx": 0
+				}
+			]
+		}
+	]
 }
