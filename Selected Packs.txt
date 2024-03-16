@@ -1,0 +1,21 @@
+Vanilla Tweaks Resource Pack
+Version: 1.20
+Packs:
+	VariatedDirt
+	RandomCoarseDirtRotation
+	VariatedGrass
+	VariatedCobblestone
+	RandomMossRotation
+	VariatedBricks
+	VariatedLogs
+	VariatedMushroomBlocks
+	VariatedEndStone
+	VariatedGravel
+	VariatedMycelium
+	VariatedPlanks
+	VariatedStone
+	VariatedTerracotta
+	VariatedUnpolishedStones
+	VariatedBookshelves
+	RandomSunflowerRotation
+	VariatedVillagers
