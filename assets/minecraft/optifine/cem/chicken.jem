@@ -1,6 +1,6 @@
 {
 	"credit": "Created by FreshLX for Fresh_Animations",
-	"texture": "mob/chicken/chicken3.png",
+	"texture": "mob/chicken12.png",
 	"textureSize": [256, 128],
 	"models": [
 		{
@@ -153,6 +153,33 @@
 									"uvUp": [196, 80, 196, 40],
 									"uvDown": [196, 40, 196, 80]
 								}
+							],
+							"submodels": [
+								{
+									"id": "shroom2",
+									"invertAxis": "xy",
+									"translate": [0, 0, 0],
+									"boxes": [
+										{
+											"coordinates": [1, 2, -2.5, 0, 5, 5],
+											"uvNorth": [216, 20, 216, 40],
+											"uvEast": [196, 20, 216, 40],
+											"uvSouth": [236, 20, 236, 40],
+											"uvWest": [216, 20, 236, 40],
+											"uvUp": [216, 0, 216, 20],
+											"uvDown": [216, 0, 216, 20]
+										},
+										{
+											"coordinates": [-1.5, 2, 0, 5, 5, 0],
+											"uvNorth": [196, 20, 216, 40],
+											"uvEast": [196, 20, 196, 40],
+											"uvSouth": [216, 20, 236, 40],
+											"uvWest": [216, 20, 216, 40],
+											"uvUp": [216, 0, 216, 20],
+											"uvDown": [216, 0, 216, 20]
+										}
+									]
+								}
 							]
 						}
 					]
@@ -195,6 +222,33 @@
 									"uvWest": [88, 96, 116, 124],
 									"uvUp": [116, 96, 116, 68],
 									"uvDown": [116, 68, 116, 96]
+								}
+							],
+							"submodels": [
+								{
+									"id": "shroom",
+									"invertAxis": "xy",
+									"translate": [0, 0, 0],
+									"boxes": [
+										{
+											"coordinates": [-1, 0, -1.5, 0, 5, 5],
+											"uvNorth": [176, 20, 176, 40],
+											"uvEast": [156, 20, 176, 40],
+											"uvSouth": [196, 20, 196, 40],
+											"uvWest": [176, 20, 196, 40],
+											"uvUp": [176, 0, 176, 20],
+											"uvDown": [176, 0, 176, 20]
+										},
+										{
+											"coordinates": [-3.5, 0, 1, 5, 5, 0],
+											"uvNorth": [156, 20, 176, 40],
+											"uvEast": [196, 20, 196, 40],
+											"uvSouth": [176, 20, 196, 40],
+											"uvWest": [196, 20, 196, 40],
+											"uvUp": [176, 0, 176, 20],
+											"uvDown": [176, 0, 176, 20]
+										}
+									]
 								}
 							]
 						},
