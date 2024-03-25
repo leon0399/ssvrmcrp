@@ -1,8 +1,9 @@
 {
     "credit": "Created by FreshLX for Fresh_Animations",
+    "texture": "mob/pig/pig3.png",
     "textureSize": [
         256,
-        128
+        256
     ],
     "models": [
         {
@@ -78,6 +79,53 @@
                                 64,
                                 32
                             ]
+                        },
+                        {
+                            "coordinates": [
+                                -4,
+                                -4,
+                                -8,
+                                8,
+                                8,
+                                8
+                            ],
+                            "uvNorth": [
+                                32,
+                                160,
+                                64,
+                                192
+                            ],
+                            "uvEast": [
+                                0,
+                                160,
+                                32,
+                                192
+                            ],
+                            "uvSouth": [
+                                96,
+                                160,
+                                128,
+                                192
+                            ],
+                            "uvWest": [
+                                64,
+                                160,
+                                96,
+                                192
+                            ],
+                            "uvUp": [
+                                64,
+                                160,
+                                32,
+                                128
+                            ],
+                            "uvDown": [
+                                96,
+                                128,
+                                64,
+                                160
+                            ],
+                            "sizeAdd": 0.5
                         },
                         {
                             "coordinates": [
