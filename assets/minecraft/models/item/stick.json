@@ -10,6 +10,8 @@
     { "predicate": {"custom_model_data": 4}, "model": "senseshift:item/hobbyhorse/horse_chestnut"},
     { "predicate": {"custom_model_data": 5}, "model": "senseshift:item/hobbyhorse/horse_creamy"},
     { "predicate": {"custom_model_data": 6}, "model": "senseshift:item/hobbyhorse/horse_darkbrown"},
-    { "predicate": {"custom_model_data": 7}, "model": "senseshift:item/hobbyhorse/horse_gray"}
+    { "predicate": {"custom_model_data": 7}, "model": "senseshift:item/hobbyhorse/horse_gray"},
+    { "predicate": {"custom_model_data": 8}, "model": "senseshift:item/hobbyhorse/horse_white"},
+    { "predicate": {"custom_model_data": 9}, "model": "senseshift:item/hobbyhorse/mule"}
   ]
 }
