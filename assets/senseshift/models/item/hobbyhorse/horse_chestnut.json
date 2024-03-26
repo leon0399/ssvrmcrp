@@ -1,0 +1,7 @@
+{
+	"parent": "senseshift:item/hobbyhorse/hobbyhorse",
+	"textures": {
+		"0": "senseshift:item/hobbyhorse/horse_chestnut",
+		"particle": "senseshift:item/hobbyhorse/horse_chestnut"
+	}
+}

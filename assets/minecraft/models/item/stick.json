@@ -1,0 +1,15 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "minecraft:item/stick"
+  },
+  "overrides": [
+    { "predicate": {"custom_model_data": 1}, "model": "senseshift:item/hobbyhorse/donkey"},
+    { "predicate": {"custom_model_data": 2}, "model": "senseshift:item/hobbyhorse/horse_black"},
+    { "predicate": {"custom_model_data": 3}, "model": "senseshift:item/hobbyhorse/horse_brown"},
+    { "predicate": {"custom_model_data": 4}, "model": "senseshift:item/hobbyhorse/horse_chestnut"},
+    { "predicate": {"custom_model_data": 5}, "model": "senseshift:item/hobbyhorse/horse_creamy"},
+    { "predicate": {"custom_model_data": 6}, "model": "senseshift:item/hobbyhorse/horse_darkbrown"},
+    { "predicate": {"custom_model_data": 7}, "model": "senseshift:item/hobbyhorse/horse_gray"}
+  ]
+}
