@@ -1,7 +1,7 @@
 {
 	"parent": "senseshift:item/katana/katana",
 	"textures": {
-		"0": "senseshift:item/katana/neteherite_katana",
-		"particle": "senseshift:item/katana/neteherite_katana"
+		"0": "senseshift:item/katana/netherite_katana",
+		"particle": "senseshift:item/katana/netherite_katana"
 	}
 }
